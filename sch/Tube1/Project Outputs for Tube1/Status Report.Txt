@@ -1,0 +1,11 @@
+Output: Simple BOM
+Type  : SimpleBOM
+From  : Project [Tube1.PrjPCB]
+   Generated File[Tube1.BOM]
+   Generated File[Tube1.CSV]
+
+
+Files Generated   : 2
+Documents Printed : 0
+
+Finished Output Generation At 17:02:19 On 2018/3/21

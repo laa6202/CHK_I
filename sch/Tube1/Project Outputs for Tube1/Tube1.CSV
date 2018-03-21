@@ -1,0 +1,8 @@
+"Bill of Material for Tube1.PrjPCB"
+"On 2018/3/21 at 17:02:19"
+
+"Comment","Pattern","Quantity","Components"
+
+"C1206","1206","2","C1, C2","Ceramic Chip Capacitor - Standard"
+"LED0","0805","1","D1","Typical INFRARED GaAs LED"
+"LED0","LED-0","1","D2","Typical INFRARED GaAs LED"
