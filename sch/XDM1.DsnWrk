@@ -2,3 +2,5 @@
 Version=1.0
 [Project1]
 ProjectPath=Tube1\Tube1.PrjPCB
+[Project2]
+ProjectPath=Room1\Room1.PrjPCB
