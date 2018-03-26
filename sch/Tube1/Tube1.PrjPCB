@@ -147,14 +147,10 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
 [GeneratedDocument1]
-DocumentPath=ref\STM32F407VET6mini核心板--整体封装库.PcbLib.htm
-DItemRevisionGUID=
-
-[GeneratedDocument2]
 DocumentPath=Project Outputs for Tube1\Tube1.BOM
 DItemRevisionGUID=
 
-[GeneratedDocument3]
+[GeneratedDocument2]
 DocumentPath=Project Outputs for Tube1\Tube1.CSV
 DItemRevisionGUID=
 
