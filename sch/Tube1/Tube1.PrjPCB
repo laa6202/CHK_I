@@ -147,10 +147,14 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
 [GeneratedDocument1]
-DocumentPath=Project Outputs for Tube1\Tube1.BOM
+DocumentPath=Project Outputs for Tube1\Design Rule Check - Tube1.html
 DItemRevisionGUID=
 
 [GeneratedDocument2]
+DocumentPath=Project Outputs for Tube1\Tube1.BOM
+DItemRevisionGUID=
+
+[GeneratedDocument3]
 DocumentPath=Project Outputs for Tube1\Tube1.CSV
 DItemRevisionGUID=
 
