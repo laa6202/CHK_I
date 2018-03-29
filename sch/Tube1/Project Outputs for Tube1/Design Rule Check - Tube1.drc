@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : D:\work\CHK_I\sch\Tube1\Tube1.PcbDoc
 Date     : 2018/3/29
-Time     : 23:14:07
+Time     : 23:38:32
 
 Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
 Rule Violations :0
@@ -13,25 +13,10 @@ Processing Rule : Width Constraint (Min=20mil) (Max=50mil) (Preferred=50mil) (In
 Rule Violations :0
 
 Processing Rule : Net Antennae (Tolerance=0mil) (All)
-   Violation between Net Antennae: Track (-220mil,456.496mil)(-151.496mil,456.496mil)  Top Layer
-   Violation between Net Antennae: Track (485mil,1125mil)(488mil,1125mil)  Bottom Layer
-   Violation between Net Antennae: Track (-565mil,650mil)(-515mil,700mil)  Bottom Layer
-   Violation between Net Antennae: Track (360mil,1125mil)(363mil,1125mil)  Bottom Layer
-   Violation between Net Antennae: Track (60mil,1688mil)(68.5mil,1696.5mil)  Bottom Layer
-Rule Violations :5
+Rule Violations :0
 
 Processing Rule : Silk to Silk (Clearance=10mil) (All),(All)
-   Violation between Text "5" (1300mil,-1300mil)  Top Overlay and 
-                     Track (1290mil,-1330mil)(1290mil,-1130mil)  Top Overlay
-   Violation between Text "6" (1300mil,-1200mil)  Top Overlay and 
-                     Track (1290mil,-1330mil)(1290mil,-1130mil)  Top Overlay
-   Violation between Text "1" (960mil,-1300mil)  Top Overlay and 
-                     Track (990mil,-1330mil)(990mil,-1130mil)  Top Overlay
-   Violation between Text "2" (940mil,-1200mil)  Top Overlay and 
-                     Track (990mil,-1330mil)(990mil,-1130mil)  Top Overlay
-   Violation between Text "U2" (-415mil,-605mil)  Top Overlay and 
-                     Text "R13" (-585mil,-560mil)  Top Overlay
-Rule Violations :5
+Rule Violations :0
 
 Processing Rule : Silkscreen Over Component Pads (Clearance=10mil) (All),(All)
    Violation between Track (478.11mil,1267.716mil)(793.07mil,1267.716mil)  Top Overlay and 
@@ -125,11 +110,7 @@ Processing Rule : Silkscreen Over Component Pads (Clearance=10mil) (All),(All)
 Rule Violations :44
 
 Processing Rule : Minimum Solder Mask Sliver (Gap=10mil) (All),(All)
-   Violation between Via (-245mil,-1100mil) Top Layer to Bottom Layer and 
-                     Pad U3-4(-285.512mil,-1098mil)  Top Layer
-   Violation between Via (-245mil,-1100mil) Top Layer to Bottom Layer and 
-                     Pad U3-3(-285.512mil,-1148mil)  Top Layer
-Rule Violations :2
+Rule Violations :0
 
 Processing Rule : Hole To Hole Clearance (Gap=10mil) (All),(All)
 Rule Violations :0
@@ -141,19 +122,7 @@ Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (
 Rule Violations :0
 
 Processing Rule : Un-Routed Net Constraint ( (All) )
-   Violation between Un-Routed Net Constraint: Net CTRL2 Between Pad R17-2 (-36.85,-1310mil) And Track on layer Bottom Layer (-36.85,-1310mil)
-   Violation between Un-Routed Net Constraint: Net PA1 Between Pad R1-2 (488,1125mil) And Track on layer Bottom Layer (488,1125mil)
-   Violation between Un-Routed Net Constraint: Net AGND Between Track on layer Bottom Layer (-565,650mil) And Track on layer Top Layer (-565,650mil)
-   Violation between Un-Routed Net Constraint: Net AGND Between Pad C3-2 (-515,1297mil) And Track on layer Bottom Layer (-515,1297mil)
-   Violation between Un-Routed Net Constraint: Net AD1_OUT Between Pad R1-1 (363,1125mil) And Track on layer Bottom Layer (363,1125mil)
-   Violation between Un-Routed Net Constraint: Net NetC1_2 Between Track on layer Bottom Layer (60,1688mil) And Pad C1-2 (60,1688mil)
-   Violation between Un-Routed Net Constraint: Net GND Between Pad R7-1 (-656.076,643.02mil) And Track on layer Bottom Layer (-656.076,643.02mil)
-   Violation between Un-Routed Net Constraint: Net GND Between Track on layer Bottom Layer (-335,357mil) And Pad C13-1 (-335,357mil)
-   Violation between Un-Routed Net Constraint: Net GND Between Track on layer Bottom Layer (-815,233mil) And Pad C8-2 (-815,233mil)
-   Violation between Un-Routed Net Constraint: Net GND Between Pad C7-1 (-815,368mil) And Track on layer Bottom Layer (-815,475.504mil)
-   Violation between Un-Routed Net Constraint: Net VCC5+ Between Pad C9-1 (-205,232mil) And Track on layer Bottom Layer (-205,232mil)
-   Violation between Un-Routed Net Constraint: Net VCC5+ Between Track on layer Top Layer (-151.496,456.496mil) And Track on layer Bottom Layer (-151.496,456.496mil)
-Rule Violations :12
+Rule Violations :0
 
 Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
@@ -168,5 +137,5 @@ Processing Rule : Width Constraint (Min=20mil) (Max=50mil) (Preferred=50mil) (In
 Rule Violations :0
 
 
-Violations Detected : 68
+Violations Detected : 44
 Time Elapsed        : 00:00:00
