@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : D:\work\CHK_I\sch\Tube1\Tube1.PcbDoc
-Date     : 2018/3/29
-Time     : 23:38:32
+Date     : 2018/3/30
+Time     : 22:01:01
 
 Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
 Rule Violations :0
@@ -138,4 +138,4 @@ Rule Violations :0
 
 
 Violations Detected : 44
-Time Elapsed        : 00:00:00
+Time Elapsed        : 00:00:01

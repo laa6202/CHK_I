@@ -1,11 +1,12 @@
-Output: Simple BOM
-Type  : SimpleBOM
+Output: Gerber Files
+Type  : Gerber
 From  : Project [Tube1.PrjPCB]
-   Generated File[Tube1.BOM]
-   Generated File[Tube1.CSV]
+   Generated File[Tube1.RUL]
+   Generated File[Tube1.EXTREP]
+   Generated File[Tube1.REP]
 
 
-Files Generated   : 2
+Files Generated   : 3
 Documents Printed : 0
 
-Finished Output Generation At 17:02:19 On 2018/3/21
+Finished Output Generation At 22:12:11 On 2018/3/30
