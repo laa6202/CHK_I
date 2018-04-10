@@ -8,6 +8,8 @@ FPS = 30
 WINWIDTH=720
 WINHEIGHT=480
 FNLOGO = 'logo.png'
+FNTITLE = 'Title.png'
+
 
 #           R   G   B
 GRAY	= (100,100,100)
@@ -18,7 +20,7 @@ GREEN 	= (  0,255,  0)
 BLUE	= (  0,  0,255)
 YELLOW	= (255,255,  0)
 
-BGCOLOR = GRAY
+BGCOLOR = WHITE
 
 def main():
     global FPSCLOCK,DIS
@@ -26,7 +28,9 @@ def main():
     DIS=DisInit()
     FPSCLOCK = pygame.time.Clock()
     GetStrTime()
-    ShowLogo(stDirPic)
+    ShowLogo(stDirPic,(0,0))
+    ShowTitle(stDirPic,(100,0))
+    pygame.draw.line(DIS,NAVYBLUE,(10,110),(710,110),3)
 
     while True:
         for event in pygame.event.get():
@@ -40,17 +44,23 @@ def main():
 def PicDirInit():
     stDirMain = sys.path[0]
     stDirPic = stDirMain + '/pic'
-    print(stDirPic)
+    #print(stDirPic)
     return stDirPic
 
 
-def ShowLogo(stDirPic):
+def ShowLogo(stDirPic,pos):
     fnLogo = stDirPic + '/' + FNLOGO
-    print(fnLogo,type(fnLogo))
+    #print(fnLogo,type(fnLogo),pos)
     surLogoSrc = pygame.image.load(fnLogo)
     surLogoDst = pygame.transform.scale(surLogoSrc,(100,100))
-    
-    DIS.blit(surLogoDst,(0,0))    
+    DIS.blit(surLogoDst,pos)    
+
+
+def ShowTitle(stDirPic,pos):
+    fnTitle = stDirPic + '/' + FNTITLE
+    surTitle = pygame.image.load(fnTitle)
+    DIS.blit(surTitle,pos)
+    #print(objFont)
     
 
 def DisInit():
