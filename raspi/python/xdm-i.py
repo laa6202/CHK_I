@@ -5,7 +5,7 @@ import random
 import pygame,sys
 from pygame.locals import *
 
-FPS = 30
+FPS = 2
 WINWIDTH=720
 WINHEIGHT=480
 FNLOGO = 'logo.png'
@@ -127,7 +127,8 @@ def ShowTEM(stDirPic,pos):
 
 def DisInit():
     pygame.init()
-    DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT))
+    DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT),pygame.FULLSCREEN|pygame.HWSURFACE)
+    #DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT))
     pygame.display.set_caption("XDM_I")
     DIS.fill(BGCOLOR)
     return DIS
