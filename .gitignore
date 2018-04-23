@@ -12,3 +12,9 @@
 /sch/Tube02/*.SchDocPreview
 /sch/Tube02/History
 /sch/Tube02/Project Logs for Tube02
+/mcu/tmcu/tmcu/MDK-ARM/tmcu.uvguix.Administrator
+/mcu/tmcu/tmcu/MDK-ARM/DebugConfig
+/mcu/tmcu/tmcu/MDK-ARM/RTE
+/mcu/tmcu/tmcu/MDK-ARM/tmcu
+/mcu/tmcu/tmcu/MDK-ARM/EventRecorderStub.scvd
+/mcu/tmcu/tmcu/MDK-ARM/startup_stm32f407xx.lst

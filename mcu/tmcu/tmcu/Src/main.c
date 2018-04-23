@@ -40,6 +40,7 @@
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN Includes */
+#include "action.h"
 
 /* USER CODE END Includes */
 
@@ -106,7 +107,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_ADC1_Init();
-  MX_IWDG_Init();
+ // MX_IWDG_Init();
   MX_TIM6_Init();
   MX_TIM7_Init();
   MX_USART1_UART_Init();
@@ -114,6 +115,8 @@ int main(void)
   MX_USART3_UART_Init();
 
   /* USER CODE BEGIN 2 */
+
+	App_Init();
 
   /* USER CODE END 2 */
 
@@ -124,6 +127,8 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
+		
+		App_Action();
 
   }
   /* USER CODE END 3 */
