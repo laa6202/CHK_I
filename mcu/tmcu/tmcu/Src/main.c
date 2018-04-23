@@ -40,7 +40,7 @@
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "action.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -108,7 +108,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_ADC1_Init();
-  MX_IWDG_Init();
+//  MX_IWDG_Init();
   MX_TIM6_Init();
   MX_TIM7_Init();
   MX_USART1_UART_Init();
@@ -117,7 +117,7 @@ int main(void)
   MX_ADC2_Init();
 
   /* USER CODE BEGIN 2 */
-
+	App_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -125,7 +125,7 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
-
+	App_Action();
   /* USER CODE BEGIN 3 */
 
   }
