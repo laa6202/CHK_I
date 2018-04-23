@@ -56,6 +56,8 @@
 #define CTRL1_GPIO_Port GPIOB
 #define CTRL2_Pin GPIO_PIN_4
 #define CTRL2_GPIO_Port GPIOB
+#define LED_PB9_Pin GPIO_PIN_9
+#define LED_PB9_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
