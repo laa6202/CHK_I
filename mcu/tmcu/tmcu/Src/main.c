@@ -70,13 +70,13 @@ static void MX_GPIO_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_ADC2_Init(void);
 static void MX_IWDG_Init(void);
+static void MX_RNG_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_TIM6_Init(void);
 static void MX_TIM7_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_USART3_UART_Init(void);
-static void MX_RNG_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -115,13 +115,13 @@ int main(void)
   MX_ADC1_Init();
   MX_ADC2_Init();
 //  MX_IWDG_Init();
+  MX_RNG_Init();
   MX_TIM5_Init();
   MX_TIM6_Init();
   MX_TIM7_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
-  MX_RNG_Init();
 
   /* USER CODE BEGIN 2 */
 	App_Init();
@@ -244,7 +244,7 @@ static void MX_ADC1_Init(void)
   sConfigInjected.InjectedChannel = ADC_CHANNEL_TEMPSENSOR;
   sConfigInjected.InjectedRank = 1;
   sConfigInjected.InjectedNbrOfConversion = 4;
-  sConfigInjected.InjectedSamplingTime = ADC_SAMPLETIME_3CYCLES;
+  sConfigInjected.InjectedSamplingTime = ADC_SAMPLETIME_144CYCLES;
   sConfigInjected.ExternalTrigInjecConvEdge = ADC_EXTERNALTRIGINJECCONVEDGE_RISING;
   sConfigInjected.ExternalTrigInjecConv = ADC_EXTERNALTRIGINJECCONV_T5_TRGO;
   sConfigInjected.AutoInjectedConv = DISABLE;
@@ -277,7 +277,6 @@ static void MX_ADC1_Init(void)
     */
   sConfigInjected.InjectedChannel = ADC_CHANNEL_TEMPSENSOR;
   sConfigInjected.InjectedRank = 4;
-  sConfigInjected.InjectedSamplingTime = ADC_SAMPLETIME_480CYCLES;
   if (HAL_ADCEx_InjectedConfigChannel(&hadc1, &sConfigInjected) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
@@ -326,7 +325,7 @@ static void MX_ADC2_Init(void)
   sConfigInjected.InjectedChannel = ADC_CHANNEL_1;
   sConfigInjected.InjectedRank = 1;
   sConfigInjected.InjectedNbrOfConversion = 4;
-  sConfigInjected.InjectedSamplingTime = ADC_SAMPLETIME_3CYCLES;
+  sConfigInjected.InjectedSamplingTime = ADC_SAMPLETIME_15CYCLES;
   sConfigInjected.ExternalTrigInjecConvEdge = ADC_EXTERNALTRIGINJECCONVEDGE_NONE;
   sConfigInjected.ExternalTrigInjecConv = ADC_INJECTED_SOFTWARE_START;
   sConfigInjected.AutoInjectedConv = DISABLE;

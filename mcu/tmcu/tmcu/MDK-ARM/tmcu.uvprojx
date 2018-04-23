@@ -377,9 +377,6 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>::CMSIS</GroupName>
-        </Group>
-        <Group>
           <GroupName>Drivers/STM32F4xx_HAL_Driver</GroupName>
           <Files>
             <File>
@@ -528,6 +525,9 @@
               <FilePath>..\..\code\src\action.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>
