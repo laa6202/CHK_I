@@ -4,26 +4,33 @@
 #include "action.h"
 #include "calc.h"
 
-#define LEN_BUF 16000
+#define LEN_BUF 8000
 
 static int indexPoint;
 static int timeBegin;
 static int timeEnd;
 static int timeInter;
-q15_t bufPoint[LEN_BUF];
+int rdy_A,rdy_B;
+float32_t bufPointA[LEN_BUF];
+float32_t bufPointB[LEN_BUF];
+
 
 int Value_Init(){
 	indexPoint=0;
 	timeBegin = 0;
 	timeEnd = 0;
 	timeInter = 0;
-	arm_fill_q15(0,bufPoint,LEN_BUF);
+	rdy_A = 0;	
+	rdy_B = 0;
+//	arm_fill_f32(0,bufPointA,LEN_BUF);
+//	arm_fill_f32(0,bufPointB,LEN_BUF);
 	return 0;
 }
 
 
 int App_Init(){
 	Value_Init();
+//	SliceInit();
 	//SysTick->CTRL = (~SysTick_CTRL_CLKSOURCE_Msk) & SysTick->CTRL;
 	SysTick->LOAD = SysTick_LOAD_RELOAD_Msk;
 	LED_PB9_GPIO_Port->ODR = (LED_PB9_GPIO_Port->ODR & (~LED_PB9_Pin));	
@@ -34,7 +41,19 @@ int App_Init(){
 }
 
 int App_Action(){
+
+	if(rdy_A == 1){
+	//		BeginTick();
+		BufSlice(bufPointA);
+		rdy_A = 0;
+	//		EndTick();
+	}
 	
+	if(rdy_B == 1){
+		BufSlice(bufPointB);
+		rdy_B = 0;
+	}
+
 //	IWDG->KR = 0xAAAA;
 	return 0;
 }
@@ -70,19 +89,32 @@ int App_ADC1_Init(void)
 
 int App_ADC1_IRQ(void)
 {
-	BeginTick();
 	if((ADC1->SR & ADC_SR_JEOC_Msk) == ADC_SR_JEOC_Msk){
+		BeginTick();
+		
+		uint16_t adc_d1 =  ADC1->JDR1;
+		float adc_d1f = 0.3f;
+		
 		if(indexPoint < LEN_BUF){
-			bufPoint[indexPoint] = ADC1->JDR1;
+			bufPointA[indexPoint] = adc_d1f;
 			indexPoint++;
 		}
-		else{ 
-			indexPoint = 0;
-			bufPoint[0] = ADC1->JDR1;
+		else if(indexPoint == LEN_BUF){
+			bufPointB[0] = adc_d1f; 
+			rdy_A = 1;
+			indexPoint++;
+		}
+		else if(indexPoint < 2*LEN_BUF){
+			bufPointA[indexPoint - LEN_BUF] = adc_d1f;
+			indexPoint++;
+		}
+		else{
+			bufPointA[0] = adc_d1f; 
+			rdy_B = 1;
+			indexPoint = 1;
 			}
-		
+			EndTick();
 	}
-	EndTick();
 	return 0;
 }
 
