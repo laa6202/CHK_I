@@ -11,8 +11,8 @@ static int timeBegin;
 static int timeEnd;
 static int timeInter;
 int rdy_A,rdy_B;
-float32_t bufPointA[LEN_BUF];
-float32_t bufPointB[LEN_BUF];
+static float32_t bufPointA[LEN_BUF];
+static float32_t bufPointB[LEN_BUF];
 
 
 int Value_Init(){
@@ -22,15 +22,15 @@ int Value_Init(){
 	timeInter = 0;
 	rdy_A = 0;	
 	rdy_B = 0;
-//	arm_fill_f32(0,bufPointA,LEN_BUF);
-//	arm_fill_f32(0,bufPointB,LEN_BUF);
+//	arm_fill_f32(0.0f,bufPointA,LEN_BUF);
+//	arm_fill_f32(0.0f,bufPointB,LEN_BUF);
 	return 0;
 }
 
 
 int App_Init(){
 	Value_Init();
-//	SliceInit();
+	SliceInit();
 	//SysTick->CTRL = (~SysTick_CTRL_CLKSOURCE_Msk) & SysTick->CTRL;
 	SysTick->LOAD = SysTick_LOAD_RELOAD_Msk;
 	LED_PB9_GPIO_Port->ODR = (LED_PB9_GPIO_Port->ODR & (~LED_PB9_Pin));	
@@ -43,10 +43,10 @@ int App_Init(){
 int App_Action(){
 
 	if(rdy_A == 1){
-	//		BeginTick();
+			BeginTick();
 		BufSlice(bufPointA);
 		rdy_A = 0;
-	//		EndTick();
+			EndTick();
 	}
 	
 	if(rdy_B == 1){
@@ -90,10 +90,8 @@ int App_ADC1_Init(void)
 int App_ADC1_IRQ(void)
 {
 	if((ADC1->SR & ADC_SR_JEOC_Msk) == ADC_SR_JEOC_Msk){
-		BeginTick();
-		
 		uint16_t adc_d1 =  ADC1->JDR1;
-		float adc_d1f = 0.3f;
+		float adc_d1f = (float)adc_d1 * 1.0f;
 		
 		if(indexPoint < LEN_BUF){
 			bufPointA[indexPoint] = adc_d1f;
@@ -113,7 +111,6 @@ int App_ADC1_IRQ(void)
 			rdy_B = 1;
 			indexPoint = 1;
 			}
-			EndTick();
 	}
 	return 0;
 }
