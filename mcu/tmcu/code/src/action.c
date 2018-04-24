@@ -1,18 +1,23 @@
-#include "action.h"
+
 #include "stm32f4xx_hal.h"
+#include "arm_math.h"
+#include "action.h"
+#include "calc.h"
 
+#define LEN_BUF 16000
 
-static int indexADC;
+static int indexPoint;
 static int timeBegin;
 static int timeEnd;
 static int timeInter;
-
+q15_t bufPoint[LEN_BUF];
 
 int Value_Init(){
-	indexADC=0;
+	indexPoint=0;
 	timeBegin = 0;
 	timeEnd = 0;
 	timeInter = 0;
+	arm_fill_q15(0,bufPoint,LEN_BUF);
 	return 0;
 }
 
@@ -66,8 +71,17 @@ int App_ADC1_Init(void)
 int App_ADC1_IRQ(void)
 {
 	BeginTick();
-	if((ADC1->SR & ADC_SR_JEOC_Msk) == ADC_SR_JEOC_Msk)
-		indexADC++;
+	if((ADC1->SR & ADC_SR_JEOC_Msk) == ADC_SR_JEOC_Msk){
+		if(indexPoint < LEN_BUF){
+			bufPoint[indexPoint] = ADC1->JDR1;
+			indexPoint++;
+		}
+		else{ 
+			indexPoint = 0;
+			bufPoint[0] = ADC1->JDR1;
+			}
+		
+	}
 	EndTick();
 	return 0;
 }
