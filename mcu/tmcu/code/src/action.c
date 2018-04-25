@@ -4,7 +4,7 @@
 #include "action.h"
 #include "calc.h"
 
-#define LEN_BUF 8000
+#define LEN_BUF 4096
 
 static int indexPoint;
 static int timeBegin;
@@ -31,7 +31,7 @@ int Value_Init(){
 int App_Init(){
 	Value_Init();
 	SliceInit();
-	//SysTick->CTRL = (~SysTick_CTRL_CLKSOURCE_Msk) & SysTick->CTRL;
+//	SysTick->CTRL = (~SysTick_CTRL_CLKSOURCE_Msk) & SysTick->CTRL;
 	SysTick->LOAD = SysTick_LOAD_RELOAD_Msk;
 	LED_PB9_GPIO_Port->ODR = (LED_PB9_GPIO_Port->ODR & (~LED_PB9_Pin));	
 	App_ADC1_Init();
@@ -43,10 +43,11 @@ int App_Init(){
 int App_Action(){
 
 	if(rdy_A == 1){
-			BeginTick();
 		BufSlice(bufPointA);
 		rdy_A = 0;
-			EndTick();
+		BeginTick();
+		TestRFFT();
+		EndTick();
 	}
 	
 	if(rdy_B == 1){
