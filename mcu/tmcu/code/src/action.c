@@ -22,8 +22,8 @@ int Value_Init(){
 	timeInter = 0;
 	rdy_A = 0;	
 	rdy_B = 0;
-//	arm_fill_f32(0.0f,bufPointA,LEN_BUF);
-//	arm_fill_f32(0.0f,bufPointB,LEN_BUF);
+	arm_fill_f32(0,bufPointA,LEN_BUF);
+	arm_fill_f32(0,bufPointB,LEN_BUF);
 	return 0;
 }
 
@@ -91,7 +91,7 @@ int App_ADC1_IRQ(void)
 {
 	if((ADC1->SR & ADC_SR_JEOC_Msk) == ADC_SR_JEOC_Msk){
 		uint16_t adc_d1 =  ADC1->JDR1;
-		float adc_d1f = (float)adc_d1 * 1.0f;
+		float adc_d1f = (float)adc_d1;
 		
 		if(indexPoint < LEN_BUF){
 			bufPointA[indexPoint] = adc_d1f;

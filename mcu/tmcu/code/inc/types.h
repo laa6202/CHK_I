@@ -1,13 +1,13 @@
 #ifndef __TYPES_H
 #define __TYPES_H
 
-#define LEN_SLICE 8000
+#define LEN_SLICE 800
 
 
 typedef struct {
 	int index;
-	float t[LEN_SLICE];
-	float f[LEN_SLICE];
+	float * t;
+	float * f;
 	int flag;
 } SLICE,pSLICE;
 

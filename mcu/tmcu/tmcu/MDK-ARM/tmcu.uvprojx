@@ -530,11 +530,6 @@
               <FilePath>..\..\code\src\calc.c</FilePath>
             </File>
             <File>
-              <FileName>arm_cortexM4l_math.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>..\..\code\lib\arm_cortexM4l_math.lib</FilePath>
-            </File>
-            <File>
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\..\code\lib\arm_cortexM4lf_math.lib</FilePath>
