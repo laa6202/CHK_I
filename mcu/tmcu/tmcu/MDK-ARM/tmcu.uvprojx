@@ -534,6 +534,11 @@
               <FileType>4</FileType>
               <FilePath>..\..\code\lib\arm_cortexM4lf_math.lib</FilePath>
             </File>
+            <File>
+              <FileName>commu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\code\src\commu.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

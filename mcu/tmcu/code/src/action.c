@@ -3,6 +3,7 @@
 #include "arm_math.h"
 #include "action.h"
 #include "calc.h"
+#include "commu.h"
 
 #define LEN_BUF 4096
 
@@ -31,6 +32,7 @@ int Value_Init(){
 int App_Init(){
 	Value_Init();
 	SliceInit();
+	Commu_Init();
 //	SysTick->CTRL = (~SysTick_CTRL_CLKSOURCE_Msk) & SysTick->CTRL;
 	SysTick->LOAD = SysTick_LOAD_RELOAD_Msk;
 	LED_PB9_GPIO_Port->ODR = (LED_PB9_GPIO_Port->ODR & (~LED_PB9_Pin));	
@@ -45,9 +47,10 @@ int App_Action(){
 	if(rdy_A == 1){
 		BufSlice(bufPointA);
 		rdy_A = 0;
-		BeginTick();
 		TestRFFT();
-		EndTick();
+		
+		U3SendTest();
+		U1SendTest();
 	}
 	
 	if(rdy_B == 1){
