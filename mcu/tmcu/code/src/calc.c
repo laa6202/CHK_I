@@ -8,6 +8,7 @@
 
 
 SLICE sliceA;
+SLICE sliceB;
 arm_rfft_fast_instance_f32 aa;
 static float din[LEN_TEST],dout[LEN_TEST];
 
@@ -15,6 +16,8 @@ int SliceInit(void){
 
 	arm_fill_f32(0,sliceA.f,LEN_SLICE);
 	arm_fill_f32(0,sliceA.t,LEN_SLICE);
+	arm_fill_f32(0,sliceB.f,LEN_SLICE);
+	arm_fill_f32(0,sliceB.t,LEN_SLICE);
 	TestInit();
 	arm_status ret = arm_rfft_fast_init_f32 (&aa,LEN_TEST);
 	if(ret != ARM_MATH_SUCCESS)

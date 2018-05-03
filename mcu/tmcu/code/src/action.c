@@ -107,7 +107,7 @@ int App_ADC1_IRQ(void)
 			indexPoint++;
 		}
 		else if(indexPoint < 2*LEN_BUF){
-			bufPointA[indexPoint - LEN_BUF] = adc_d1f;
+			bufPointB[indexPoint - LEN_BUF] = adc_d1f;
 			indexPoint++;
 		}
 		else{
