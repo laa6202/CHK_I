@@ -56,25 +56,6 @@ int U3_IRQ(){
 
 
 
-int U1SendTest(void){
-	if(u1SendBytes == 0){
-		u1SendBytes = 0x20;
-		USART1->DR = 0x50 - u1SendBytes;
-		u1SendBytes--;
-	}
-	return 0;
-}
-
-
-int U3SendTest(void){
-	if(u3SendBytes == 0){
-		u3SendBytes = 0x20;
-		USART3->DR = 0x50 - u3SendBytes;
-		u3SendBytes--;
-	}
-	return 0;
-}
-
 
 int U1Send(TPKG pkg){
 	

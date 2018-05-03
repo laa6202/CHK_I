@@ -6,6 +6,7 @@
 
 typedef unsigned char  U8;
 typedef unsigned short U16;
+typedef unsigned int	 U32;
 
 typedef struct {
 	int index;
@@ -26,7 +27,8 @@ typedef struct {
 	U16 t_1;
 	U16 t_2;
 	U16 h_1;
-	U16 res[6];
+	U32 sum_x;
+	U16 res[4];
 } TPKG,*pTPKG;
 	
 
@@ -35,6 +37,6 @@ typedef struct{
 	U16 ch2;
 	U16 ch3;
 	U16 ch4;
-} DADC1,DADC2,*pDADC1,*pDADC2;
+} DADC,*pDADC;
 
 #endif

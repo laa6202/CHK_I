@@ -8,4 +8,8 @@
 int BufPoint(float*,float*,int*,int*);
 int U3Send_sel(void);
 
+int IncIndex(void);
+int GetCntM(pTPKG);
+int GetCntX(pTPKG);
+
 #endif

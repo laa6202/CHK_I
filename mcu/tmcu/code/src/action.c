@@ -19,6 +19,7 @@ int rdy_A,rdy_B;
 float32_t bufPointA[LEN_BUF];
 float32_t bufPointB[LEN_BUF];
 TPKG pkg_tube;
+DADC adc1,adc2;
 
 
 int Value_Init(){
@@ -30,6 +31,8 @@ int Value_Init(){
 	arm_fill_f32(0,bufPointA,LEN_BUF);
 	arm_fill_f32(0,bufPointB,LEN_BUF);
 	memset(&pkg_tube,0,sizeof(TPKG));
+	memset(&adc1,0,sizeof(DADC));
+	memset(&adc2,0,sizeof(DADC));
 	return 0;
 }
 
@@ -44,7 +47,7 @@ int App_Init(){
 	App_ADC1_Init();
 	App_ADC2_Init();
 	App_TIM5_Init();
-//	App_TIM7_Init();
+	App_TIM7_Init();
 	return 0;
 }
 
@@ -54,10 +57,6 @@ int App_Action(){
 	if(rdy_A == 1){
 		BufSlice(bufPointA);
 		rdy_A = 0;
-		TestRFFT();
-		
-		U3SendTest();
-		U1SendTest();
 	}
 	
 	if(rdy_B == 1){
@@ -102,7 +101,9 @@ int App_ADC1_Init(void)
 int App_ADC1_IRQ(void)
 {
 	if((ADC1->SR & ADC_SR_JEOC_Msk) == ADC_SR_JEOC_Msk){
-		
+		ADC1->SR = 0;
+		GetADC1CH1(&adc1);
+		GetADC1CH4(&adc1);
 	}
 	return 0;
 }
@@ -119,8 +120,12 @@ int App_ADC2_Init(void)
 int App_ADC2_IRQ(void)
 {
 	if((ADC2->SR & ADC_SR_JEOC_Msk) == ADC_SR_JEOC_Msk){
+		ADC2->SR = 0;
 		BufPoint(bufPointA,bufPointB,&rdy_A,&rdy_B);
 		U3Send_sel();
+		GetCntM(&pkg_tube);
+		GetCntX(&pkg_tube);
+		IncIndex();
 	}
 	return 0;
 }
