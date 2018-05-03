@@ -1,6 +1,8 @@
 
 #include "stm32f4xx_hal.h"
 #include "arm_math.h"
+
+#include "types.h"
 #include "action.h"
 #include "calc.h"
 #include "commu.h"
@@ -12,8 +14,9 @@ static int timeBegin;
 static int timeEnd;
 static int timeInter;
 int rdy_A,rdy_B;
-static float32_t bufPointA[LEN_BUF];
-static float32_t bufPointB[LEN_BUF];
+float32_t bufPointA[LEN_BUF];
+float32_t bufPointB[LEN_BUF];
+TPKG pkg_tube;
 
 
 int Value_Init(){
@@ -25,6 +28,7 @@ int Value_Init(){
 	rdy_B = 0;
 	arm_fill_f32(0,bufPointA,LEN_BUF);
 	arm_fill_f32(0,bufPointB,LEN_BUF);
+	memset(&pkg_tube,0,sizeof(TPKG));
 	return 0;
 }
 
@@ -41,6 +45,7 @@ int App_Init(){
 //	App_TIM7_Init();
 	return 0;
 }
+
 
 int App_Action(){
 
@@ -61,6 +66,7 @@ int App_Action(){
 //	IWDG->KR = 0xAAAA;
 	return 0;
 }
+
 
 
 int App_TIM5_Init(){

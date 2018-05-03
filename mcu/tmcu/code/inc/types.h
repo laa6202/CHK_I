@@ -3,6 +3,8 @@
 
 #define LEN_SLICE 4096
 
+typedef unsigned char  U8;
+typedef unsigned short U16;
 
 typedef struct {
 	int index;
@@ -11,6 +13,21 @@ typedef struct {
 	int flag;
 } SLICE,pSLICE;
 
+
+typedef struct {
+	U16 head;
+	U16 index;
+	U16 freq;
+	U16 cnt_m;
+	U16 cnt_x;
+	U16 t_core;
+	U16 p_oil;
+	U16 t_1;
+	U16 t_2;
+	U16 h_1;
+	U16 res[6];
+} TPKG,pTPKG;
+	
 
 
 #endif
