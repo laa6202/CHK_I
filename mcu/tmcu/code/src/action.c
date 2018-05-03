@@ -6,10 +6,12 @@
 #include "action.h"
 #include "calc.h"
 #include "commu.h"
+#include "action_8k.h"
+#include "action_10.h"
+#include "action_pkg.h"
 
-#define LEN_BUF 4096
 
-static int indexPoint;
+
 static int timeBegin;
 static int timeEnd;
 static int timeInter;
@@ -20,7 +22,6 @@ TPKG pkg_tube;
 
 
 int Value_Init(){
-	indexPoint=0;
 	timeBegin = 0;
 	timeEnd = 0;
 	timeInter = 0;
@@ -41,6 +42,7 @@ int App_Init(){
 	SysTick->LOAD = SysTick_LOAD_RELOAD_Msk;
 	LED_PB9_GPIO_Port->ODR = (LED_PB9_GPIO_Port->ODR & (~LED_PB9_Pin));	
 	App_ADC1_Init();
+	App_ADC2_Init();
 	App_TIM5_Init();
 //	App_TIM7_Init();
 	return 0;
@@ -77,7 +79,7 @@ int App_TIM5_Init(){
 
 
 int App_TIM7_IRQ(){
-//	ADC1->CR2 = ADC1->CR2 | ADC_CR2_JSWSTART;
+	ADC1->CR2 = ADC1->CR2 | ADC_CR2_JSWSTART;
 	return 0;
 }
 
@@ -100,27 +102,7 @@ int App_ADC1_Init(void)
 int App_ADC1_IRQ(void)
 {
 	if((ADC1->SR & ADC_SR_JEOC_Msk) == ADC_SR_JEOC_Msk){
-		uint16_t adc_d1 =  ADC1->JDR1;
-		float adc_d1f = (float)adc_d1;
 		
-		if(indexPoint < LEN_BUF){
-			bufPointA[indexPoint] = adc_d1f;
-			indexPoint++;
-		}
-		else if(indexPoint == LEN_BUF){
-			bufPointB[0] = adc_d1f; 
-			rdy_A = 1;
-			indexPoint++;
-		}
-		else if(indexPoint < 2*LEN_BUF){
-			bufPointB[indexPoint - LEN_BUF] = adc_d1f;
-			indexPoint++;
-		}
-		else{
-			bufPointA[0] = adc_d1f; 
-			rdy_B = 1;
-			indexPoint = 1;
-			}
 	}
 	return 0;
 }
@@ -128,12 +110,18 @@ int App_ADC1_IRQ(void)
 
 int App_ADC2_Init(void)
 {
+	ADC2->CR1 = ADC2->CR1 | ADC_CR1_JEOCIE;
+	ADC2->CR2 = ADC2->CR2 | ADC_CR2_ADON;
 	return 0;
 }
 	
 
-int App_ADC2_Action(void)
+int App_ADC2_IRQ(void)
 {
+	if((ADC2->SR & ADC_SR_JEOC_Msk) == ADC_SR_JEOC_Msk){
+		BufPoint(bufPointA,bufPointB,&rdy_A,&rdy_B);
+		U3Send_sel();
+	}
 	return 0;
 }
 

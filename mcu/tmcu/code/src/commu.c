@@ -84,7 +84,7 @@ int U1Send(TPKG pkg){
 
 
 int U3Send(U8 data){
-	
+	USART3->DR  = data;
 	return 0;
 }
 
