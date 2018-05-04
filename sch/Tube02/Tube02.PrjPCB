@@ -131,18 +131,6 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
-[GeneratedDocument1]
-DocumentPath=Project Outputs for Tube02\Design Rule Check - Tube02.html
-DItemRevisionGUID=
-
-[GeneratedDocument2]
-DocumentPath=Project Outputs for Tube02\Tube02.BOM
-DItemRevisionGUID=
-
-[GeneratedDocument3]
-DocumentPath=Project Outputs for Tube02\Tube02.CSV
-DItemRevisionGUID=
-
 [Generic_SmartPDF]
 AutoOpenFile=-1
 AutoOpenOutJob=0
