@@ -3,8 +3,8 @@
 
 #include "types.h"
 
-int GetADC1CH1(pDADC);
-int GetADC1CH4(pDADC);
+int GetADC1CH1(pTPKG);
+int GetADC1CH4(pTPKG);
 
 #endif
 

@@ -19,7 +19,6 @@ int rdy_A,rdy_B;
 float32_t bufPointA[LEN_BUF];
 float32_t bufPointB[LEN_BUF];
 TPKG pkg_tube;
-DADC adc1,adc2;
 
 
 int Value_Init(){
@@ -30,9 +29,8 @@ int Value_Init(){
 	rdy_B = 0;
 	arm_fill_f32(0,bufPointA,LEN_BUF);
 	arm_fill_f32(0,bufPointB,LEN_BUF);
-	memset(&pkg_tube,0,sizeof(TPKG));
-	memset(&adc1,0,sizeof(DADC));
-	memset(&adc2,0,sizeof(DADC));
+
+	TPKG_Init(&pkg_tube);
 	return 0;
 }
 
@@ -55,16 +53,24 @@ int App_Init(){
 int App_Action(){
 
 	if(rdy_A == 1){
+		BeginTick();
 		BufSlice(bufPointA);
+		GetFreq(&pkg_tube);
+		IncTPKG(&pkg_tube);
+		SendTPKG(pkg_tube);
+		EndTick();
 		rdy_A = 0;
 	}
 	
 	if(rdy_B == 1){
 		BufSlice(bufPointB);
+		GetFreq(&pkg_tube);
+		IncTPKG(&pkg_tube);
+		SendTPKG(pkg_tube);
 		rdy_B = 0;
 	}
 
-//	IWDG->KR = 0xAAAA;
+	IWDG->KR = 0xAAAA;
 	return 0;
 }
 
@@ -102,8 +108,8 @@ int App_ADC1_IRQ(void)
 {
 	if((ADC1->SR & ADC_SR_JEOC_Msk) == ADC_SR_JEOC_Msk){
 		ADC1->SR = 0;
-		GetADC1CH1(&adc1);
-		GetADC1CH4(&adc1);
+		GetADC1CH1(&pkg_tube);
+		GetADC1CH4(&pkg_tube);
 	}
 	return 0;
 }

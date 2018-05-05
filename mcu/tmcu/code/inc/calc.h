@@ -1,14 +1,16 @@
 #ifndef __CALC_H
 #define __CALC_H
 
-#include "arm_math.h"
 
+#include "types.h"
 
 int SliceInit(void);
-int BufSlice(float * buf);
+int TestData(pSLICE);
 
-int TestInit(void);
-int TestRFFT(void);
+int SliceRFFT(pSLICE);
+int ABSFreq(pSLICE);
+int FirFreq(int);
+int MeanFreq(pSLICE,float *);
 
 #endif
 

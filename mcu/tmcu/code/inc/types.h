@@ -32,11 +32,6 @@ typedef struct {
 } TPKG,*pTPKG;
 	
 
-typedef struct{
-	U16 ch1;
-	U16 ch2;
-	U16 ch3;
-	U16 ch4;
-} DADC,*pDADC;
+
 
 #endif

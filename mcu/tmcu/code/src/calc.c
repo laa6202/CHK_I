@@ -4,47 +4,53 @@
 #include "types.h"
 #include "calc.h"
 
-#define LEN_TEST 4096
 
 
-SLICE sliceA;
 arm_rfft_fast_instance_f32 aa;
-static float din[LEN_TEST],dout[LEN_TEST];
+float f_abs[LEN_SLICE/2];
 
 int SliceInit(void){
-
-	arm_fill_f32(0,sliceA.f,LEN_SLICE);
-	arm_fill_f32(0,sliceA.t,LEN_SLICE);
-	
-	TestInit();
-	arm_status ret = arm_rfft_fast_init_f32 (&aa,LEN_TEST);
+	arm_status ret = arm_rfft_fast_init_f32 (&aa,LEN_SLICE);
 	if(ret != ARM_MATH_SUCCESS)
 		return -1;
 	return 0;
 }
 
 
-int TestInit(void){
-	for(int i=0;i<LEN_TEST;i++)
-		din[i] = cos(2*PI*i*10/LEN_TEST);
+int TestData(pSLICE slice){
+	for(int i=0;i<LEN_SLICE;i++)
+		*(slice->t+i) = arm_cos_f32(2*PI*i*10/LEN_SLICE);
 	return 0;
 }
 
 
-int BufSlice(float* bufA){
-	arm_copy_f32(bufA,sliceA.t,LEN_SLICE);
-	//for calc temp
-	arm_scale_f32(sliceA.t,0.0008056640625f,sliceA.t,LEN_SLICE);
+
+int SliceRFFT(pSLICE slice){
+	arm_rfft_fast_f32(&aa,slice->t,slice->f,0);
+	return 0;
+}
+
+
+int ABSFreq(pSLICE slice ){
+	arm_cmplx_mag_f32(slice->f,f_abs,LEN_SLICE/2);
 	
 	return 0;
 }
 
 
-int TestRFFT(){
-	float din2[LEN_TEST];
-	arm_copy_f32(din,din2,LEN_TEST);
-	arm_rfft_fast_f32(&aa,din2,dout,0);
+int FirFreq(int th_freq){
+	for(int i=0;i<th_freq;i++)
+		f_abs[i] = 0;
 	return 0;
 }
+
+
+int MeanFreq(pSLICE slice,float * freq){
+	float mean_fabs;
+	arm_mean_f32(f_abs,LEN_SLICE/2,&mean_fabs);
+	*freq = mean_fabs;
+	return 0;
+}
+
 
 
