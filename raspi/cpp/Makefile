@@ -1,14 +1,14 @@
 CC=gcc
 FLAG= -std=c99
-LIB=
+LIB=-lwiringPi
 INCDIR=inc
 OUTDIR=out
 TAR=xmpp
-SRC=main.c
-OBJ=main.o
+SRC=main.c commu.c
+OBJ=main.o commu.o
 
 $(TAR) : $(OBJ)
-	$(CC) -o $@ $^
+	$(CC) -o $@ $^ $(LIB)
 
 $(OBJ) : $(SRC)
 	$(CC) $(FLAG) -c $^ -I $(INCDIR)
