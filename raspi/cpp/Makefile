@@ -4,8 +4,8 @@ LIB=-lwiringPi
 INCDIR=inc
 OUTDIR=out
 TAR=xmpp
-SRC=main.c commu.c cal.c
-OBJ=main.o commu.o cal.o
+SRC=main.c commu.c cal.c action.c
+OBJ=main.o commu.o cal.o action.o
 
 $(TAR) : $(OBJ)
 	$(CC) -o $@ $^ $(LIB)

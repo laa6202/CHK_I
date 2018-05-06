@@ -1,21 +1,18 @@
 #include <wiringPi.h>
 
 #include <stdio.h>
-#include <commu.h>
-
+#include <action.h>
 
 
 int main(int agrc,char *argv[]){
 	printf("XMPP the Low APP of XDM-I\n");	
-
 	wiringPiSetup();
-	I2C_Init();
+	AppInit();
 
 	for(int i=0;i<1;i++){
-	GetTPKG();
-//		I2C_Test();
+		AppMain();
 		delay(300);
-//		printf("Main i=%d\n",i);	
+		printf("Main i=%d\n",i);	
 	}	
 	return 0;
 }
