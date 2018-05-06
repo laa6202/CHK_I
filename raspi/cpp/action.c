@@ -14,6 +14,7 @@ int AppInit(){
 int AppMain(){
 
 	GetTPKG();
+	ShowTPKG();
 	return 0;
 }
 
