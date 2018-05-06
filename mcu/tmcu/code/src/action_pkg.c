@@ -6,6 +6,7 @@
 #include "types.h"
 #include "action_pkg.h"
 #include "calc.h"
+#include "commu.h"
 
 
 SLICE sliceA;
@@ -48,6 +49,6 @@ int IncTPKG(pTPKG pkg){
 
 int SendTPKG(TPKG pkg){
 	
-	
+	U1Send(pkg);
 	return 0;
 }
