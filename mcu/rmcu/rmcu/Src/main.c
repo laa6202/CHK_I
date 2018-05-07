@@ -41,7 +41,7 @@
 #include "stm32f1xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "top.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -125,7 +125,7 @@ int main(void)
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_I2C1_Init();
-  MX_IWDG_Init();
+//  MX_IWDG_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
   MX_TIM2_Init();
@@ -136,6 +136,7 @@ int main(void)
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
+	AppInit();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -144,12 +145,11 @@ int main(void)
   {
 
   /* USER CODE END WHILE */
-
+	AppMain();
   /* USER CODE BEGIN 3 */
 
   }
   /* USER CODE END 3 */
-
 }
 
 /**
