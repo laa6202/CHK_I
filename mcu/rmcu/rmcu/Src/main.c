@@ -78,11 +78,11 @@ static void MX_IWDG_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_USART3_UART_Init(void);
-static void MX_TIM3_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -121,7 +121,7 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-//  MX_GPIO_Init();
+  MX_GPIO_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_I2C1_Init();
@@ -129,13 +129,12 @@ int main(void)
   MX_SPI1_Init();
   MX_SPI2_Init();
   MX_TIM2_Init();
+  MX_TIM3_Init();
   MX_TIM4_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
-  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-
 	AppInit();
   /* USER CODE END 2 */
 
@@ -150,6 +149,7 @@ int main(void)
 
   }
   /* USER CODE END 3 */
+
 }
 
 /**
@@ -562,7 +562,16 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, S2R3_Pin|S2R2_Pin|S2R1_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : LED_Pin */
+  GPIO_InitStruct.Pin = LED_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(LED_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : R2S1_Pin R2S2_Pin R2S4_Pin R2S3_Pin */
   GPIO_InitStruct.Pin = R2S1_Pin|R2S2_Pin|R2S4_Pin|R2S3_Pin;

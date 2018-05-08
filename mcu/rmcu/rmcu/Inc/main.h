@@ -49,6 +49,8 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define LED_Pin GPIO_PIN_13
+#define LED_GPIO_Port GPIOC
 #define R2S1_Pin GPIO_PIN_0
 #define R2S1_GPIO_Port GPIOB
 #define R2S2_Pin GPIO_PIN_1

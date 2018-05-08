@@ -6,7 +6,7 @@
 
 int AppInit(){
 	
-//	GPIOC->ODR = GPIOC->ODR & (~GPIO_PIN_13);
+	LED_GPIO_Port->ODR = LED_GPIO_Port->ODR | (LED_Pin);
 	return 0;
 }
 
