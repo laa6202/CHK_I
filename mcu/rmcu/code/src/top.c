@@ -6,7 +6,7 @@
 
 int AppInit(){
 	
-	GPIOC->ODR = GPIOC->ODR & (~GPIO_PIN_13);
+//	GPIOC->ODR = GPIOC->ODR & (~GPIO_PIN_13);
 	return 0;
 }
 
