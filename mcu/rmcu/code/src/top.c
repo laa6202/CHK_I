@@ -2,11 +2,13 @@
 #include "stm32f1xx_hal.h"
 
 #include "top.h"
+#include "beep.h"
+#include "commu.h"
 
 
 int AppInit(){
+	TIM3_Init();
 	
-	LED_GPIO_Port->ODR = LED_GPIO_Port->ODR | (LED_Pin);
 	return 0;
 }
 
