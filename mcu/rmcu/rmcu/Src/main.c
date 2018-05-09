@@ -42,6 +42,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "top.h"
+
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -61,7 +62,6 @@ TIM_HandleTypeDef htim4;
 
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
-UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -82,7 +82,6 @@ static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_USART2_UART_Init(void);
-static void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -90,6 +89,7 @@ static void MX_USART3_UART_Init(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
+
 
 /* USER CODE END 0 */
 
@@ -125,7 +125,7 @@ int main(void)
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_I2C1_Init();
-//  MX_IWDG_Init();
+  MX_IWDG_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
   MX_TIM2_Init();
@@ -133,7 +133,6 @@ int main(void)
   MX_TIM4_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
-  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 	AppInit();
   /* USER CODE END 2 */
@@ -524,25 +523,6 @@ static void MX_USART2_UART_Init(void)
 
 }
 
-/* USART3 init function */
-static void MX_USART3_UART_Init(void)
-{
-
-  huart3.Instance = USART3;
-  huart3.Init.BaudRate = 115200;
-  huart3.Init.WordLength = UART_WORDLENGTH_8B;
-  huart3.Init.StopBits = UART_STOPBITS_1;
-  huart3.Init.Parity = UART_PARITY_NONE;
-  huart3.Init.Mode = UART_MODE_TX_RX;
-  huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart3.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart3) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
-
-}
-
 /** Configure pins as 
         * Analog 
         * Input 
@@ -565,7 +545,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, S2R3_Pin|S2R2_Pin|S2R1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, BEEP_Pin|S2R3_Pin|S2R2_Pin|S2R1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : LED_Pin */
   GPIO_InitStruct.Pin = LED_Pin;
@@ -579,8 +559,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : S2R3_Pin S2R2_Pin S2R1_Pin */
-  GPIO_InitStruct.Pin = S2R3_Pin|S2R2_Pin|S2R1_Pin;
+  /*Configure GPIO pins : BEEP_Pin S2R3_Pin S2R2_Pin S2R1_Pin */
+  GPIO_InitStruct.Pin = BEEP_Pin|S2R3_Pin|S2R2_Pin|S2R1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);

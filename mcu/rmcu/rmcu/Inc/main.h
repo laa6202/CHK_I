@@ -55,6 +55,8 @@
 #define R2S1_GPIO_Port GPIOB
 #define R2S2_Pin GPIO_PIN_1
 #define R2S2_GPIO_Port GPIOB
+#define BEEP_Pin GPIO_PIN_11
+#define BEEP_GPIO_Port GPIOB
 #define S2R3_Pin GPIO_PIN_3
 #define S2R3_GPIO_Port GPIOB
 #define S2R2_Pin GPIO_PIN_4

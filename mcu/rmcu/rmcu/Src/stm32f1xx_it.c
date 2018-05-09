@@ -38,7 +38,6 @@
 /* USER CODE BEGIN 0 */
 #include "beep.h"
 #include "commu.h"
-
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -49,7 +48,6 @@ extern SPI_HandleTypeDef hspi2;
 extern TIM_HandleTypeDef htim3;
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
-extern UART_HandleTypeDef huart3;
 
 /******************************************************************************/
 /*            Cortex-M3 Processor Interruption and Exception Handlers         */ 
@@ -226,7 +224,6 @@ void TIM3_IRQHandler(void)
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
-
   /* USER CODE END TIM3_IRQn 1 */
 }
 
@@ -264,11 +261,11 @@ void SPI2_IRQHandler(void)
 void USART1_IRQHandler(void)
 {
   /* USER CODE BEGIN USART1_IRQn 0 */
-
+	U1_IRQ();
   /* USER CODE END USART1_IRQn 0 */
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
-
+	U1_IRQ_END();
   /* USER CODE END USART1_IRQn 1 */
 }
 
@@ -284,20 +281,6 @@ void USART2_IRQHandler(void)
   /* USER CODE BEGIN USART2_IRQn 1 */
 
   /* USER CODE END USART2_IRQn 1 */
-}
-
-/**
-* @brief This function handles USART3 global interrupt.
-*/
-void USART3_IRQHandler(void)
-{
-  /* USER CODE BEGIN USART3_IRQn 0 */
-
-  /* USER CODE END USART3_IRQn 0 */
-  HAL_UART_IRQHandler(&huart3);
-  /* USER CODE BEGIN USART3_IRQn 1 */
-
-  /* USER CODE END USART3_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

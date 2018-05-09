@@ -400,6 +400,16 @@
           <GroupName>App</GroupName>
           <Files>
             <File>
+              <FileName>beep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\code\src\beep.c</FilePath>
+            </File>
+            <File>
+              <FileName>commu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\code\src\commu.c</FilePath>
+            </File>
+            <File>
               <FileName>top.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\code\src\top.c</FilePath>

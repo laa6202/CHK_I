@@ -8,6 +8,7 @@
 
 int AppInit(){
 	TIM3_Init();
+	U1_Init();
 	
 	return 0;
 }

@@ -16,7 +16,11 @@ int TIM3_Init(){
 //TIM3 IRQ is 4KHZ
 int TIM3_IRQ(){
 	flag ++;
-	
+	if(flag %2 == 1)
+		BEEP_GPIO_Port->ODR = BEEP_GPIO_Port->ODR | BEEP_Pin;
+	else 
+		BEEP_GPIO_Port->ODR = BEEP_GPIO_Port->ODR & (~BEEP_Pin);
+		
 	return 0;
 }
 
