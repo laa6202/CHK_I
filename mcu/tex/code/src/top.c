@@ -3,6 +3,8 @@
 #include "stm32f0xx_hal.h"
 
 #include "top.h"
+#include "commu.h"
+#include "led.h"
 
 int TickBegin;
 int TickEnd;
@@ -11,7 +13,8 @@ int temp;
 
 int AppInit(){
 	SysTick->LOAD =0xffffff;
-	
+	U1_Init();
+	LedInit();
 	return 0;
 }
 
@@ -19,7 +22,10 @@ int AppInit(){
 int AppMain(){
 	
 	BeginTick();
-	Delay5ms();
+	U1_Send();
+	for(int i=0;i<200;i++)
+		Delay5ms();
+	Led1Glint();
 	EndTick();
 	
 	
@@ -52,3 +58,10 @@ int Delay1ms(){
 		temp++;
 	return 0;
 }
+
+int Delay10us(){
+	for(int i=0;i<64;i++)
+		temp++;
+	return 0;
+}
+
