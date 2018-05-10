@@ -1,8 +1,14 @@
 /**
   ******************************************************************************
-  * @file    stm32f1xx_it.h
-  * @brief   This file contains the headers of the interrupt handlers.
+  * @file           : main.h
+  * @brief          : Header for main.c file.
+  *                   This file contains the common defines of the application.
   ******************************************************************************
+  ** This notice applies to any and all portions of this file
+  * that are not between comment pairs USER CODE BEGIN and
+  * USER CODE END. Other portions of this file, whether 
+  * inserted by the user or by software development tools
+  * are owned by their respective copyright owners.
   *
   * COPYRIGHT(c) 2018 STMicroelectronics
   *
@@ -32,42 +38,61 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32F1xx_IT_H
-#define __STM32F1xx_IT_H
+#ifndef __MAIN_H__
+#define __MAIN_H__
+
+/* Includes ------------------------------------------------------------------*/
+
+/* USER CODE BEGIN Includes */
+
+/* USER CODE END Includes */
+
+/* Private define ------------------------------------------------------------*/
+
+#define A0_Pin GPIO_PIN_0
+#define A0_GPIO_Port GPIOA
+#define A1_Pin GPIO_PIN_1
+#define A1_GPIO_Port GPIOA
+#define A2_Pin GPIO_PIN_2
+#define A2_GPIO_Port GPIOA
+#define LED1_Pin GPIO_PIN_3
+#define LED1_GPIO_Port GPIOA
+#define LED2_Pin GPIO_PIN_4
+#define LED2_GPIO_Port GPIOA
+#define D5_Pin GPIO_PIN_5
+#define D5_GPIO_Port GPIOA
+#define D6_Pin GPIO_PIN_6
+#define D6_GPIO_Port GPIOA
+#define D7_Pin GPIO_PIN_7
+#define D7_GPIO_Port GPIOA
+#define D8_Pin GPIO_PIN_1
+#define D8_GPIO_Port GPIOB
+#define U1T_Pin GPIO_PIN_9
+#define U1T_GPIO_Port GPIOA
+#define U1R_Pin GPIO_PIN_10
+#define U1R_GPIO_Port GPIOA
+
+/* ########################## Assert Selection ############################## */
+/**
+  * @brief Uncomment the line below to expanse the "assert_param" macro in the 
+  *        HAL drivers code
+  */
+/* #define USE_FULL_ASSERT    1U */
+
+/* USER CODE BEGIN Private defines */
+
+/* USER CODE END Private defines */
 
 #ifdef __cplusplus
  extern "C" {
-#endif 
+#endif
+void _Error_Handler(char *, int);
 
-/* Includes ------------------------------------------------------------------*/
-#include "stm32f1xx_hal.h"
-#include "main.h"
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
-
-void NMI_Handler(void);
-void HardFault_Handler(void);
-void MemManage_Handler(void);
-void BusFault_Handler(void);
-void UsageFault_Handler(void);
-void SVC_Handler(void);
-void DebugMon_Handler(void);
-void PendSV_Handler(void);
-void SysTick_Handler(void);
-void ADC1_2_IRQHandler(void);
-void TIM3_IRQHandler(void);
-void I2C1_EV_IRQHandler(void);
-void SPI1_IRQHandler(void);
-void SPI2_IRQHandler(void);
-void USART1_IRQHandler(void);
-void USART2_IRQHandler(void);
-
+#define Error_Handler() _Error_Handler(__FILE__, __LINE__)
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __STM32F1xx_IT_H */
+#endif /* __MAIN_H__ */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
