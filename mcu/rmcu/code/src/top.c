@@ -9,7 +9,7 @@
 int AppInit(){
 	TIM3_Init();
 	U1_Init();
-	
+	I2C_Init();
 	return 0;
 }
 

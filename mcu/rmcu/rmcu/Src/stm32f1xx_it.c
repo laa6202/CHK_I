@@ -235,11 +235,11 @@ void TIM3_IRQHandler(void)
 void I2C1_EV_IRQHandler(void)
 {
   /* USER CODE BEGIN I2C1_EV_IRQn 0 */
-
+	I2C_EVIRQ();
   /* USER CODE END I2C1_EV_IRQn 0 */
   HAL_I2C_EV_IRQHandler(&hi2c1);
   /* USER CODE BEGIN I2C1_EV_IRQn 1 */
-
+	I2C_EVIRQ_End();
   /* USER CODE END I2C1_EV_IRQn 1 */
 }
 
