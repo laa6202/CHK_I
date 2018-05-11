@@ -17,6 +17,8 @@ int U1_Init(){
 	memset(SendBuf,0,LEN_BUF*sizeof(U8));
 	lenSend = 0;
 	indexSend = 0;
+	SendBuf[0] = 0x54;
+	SendBuf[1] = 0x31;
 //	TP1();
 	return 0;
 }
@@ -52,10 +54,10 @@ int TP1(void){
 
 int PushBuf(int t){
 	U8 byte = (t & 0xffff)>>8;
-	SendBuf[0] = byte;
+	SendBuf[2] = byte;
 	byte = t & 0xff;
-	SendBuf[1] = byte;
-	lenSend = 2;
+	SendBuf[3] = byte;
+	lenSend = 4;
 	return 0;
 }
 
