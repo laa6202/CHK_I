@@ -17,7 +17,7 @@ int U1_Init(){
 	memset(SendBuf,0,LEN_BUF*sizeof(U8));
 	lenSend = 0;
 	indexSend = 0;
-	TP1();
+//	TP1();
 	return 0;
 }
 
@@ -35,7 +35,6 @@ int U1_IRQ(){
 
 
 int U1_Send(){
-	lenSend = 6;
 	indexSend = 0;
 	USART1->TDR = SendBuf[indexSend];
 	indexSend++;
@@ -44,9 +43,19 @@ int U1_Send(){
 
 
 int TP1(void){
+	lenSend = 6;
 	for(int i=0;i<LEN_BUF;i++)
 		SendBuf[i] = 0x30+i;
-	
+	return 0;
+}
+
+
+int PushBuf(int t){
+	U8 byte = (t & 0xffff)>>8;
+	SendBuf[0] = byte;
+	byte = t & 0xff;
+	SendBuf[1] = byte;
+	lenSend = 2;
 	return 0;
 }
 

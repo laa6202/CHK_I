@@ -5,21 +5,23 @@
 #include "top.h"
 #include "commu.h"
 #include "led.h"
+#include "base.h"
+#include "action.h"
 
-int TickBegin;
-int TickEnd;
-int Tick;
-int temp;
+int T;
 
 int AppInit(){
+	T = 0x550;
 	SysTick->LOAD =0xffffff;
 	U1_Init();
 	LedInit();
+	T1_Init();
+
 	return 0;
 }
 
 
-int AppMain(){
+int AppMain2(){
 	
 	BeginTick();
 	U1_Send();
@@ -33,35 +35,14 @@ int AppMain(){
 	return 0;
 }
 
-int BeginTick(){
-	TickBegin = SysTick->VAL;
-	return 0;	
-}
 
 
-int EndTick(){
-	TickEnd = SysTick->VAL;
-	Tick = TickBegin - TickEnd;
+int AppMain(){
+
+	T = T1_GetTemp();
+	PushBuf(T);
+	U1_Send();
+	Delay1s();
+	IWDG->KR = 0xAAAA;
 	return 0;
 }
-
-
-int Delay5ms(){
-	for(int i=0;i<5;i++)
-		Delay1ms();
-	return 0;
-}
-
-
-int Delay1ms(){
-	for(int i=8000;i>=5;i--)
-		temp++;
-	return 0;
-}
-
-int Delay10us(){
-	for(int i=0;i<64;i++)
-		temp++;
-	return 0;
-}
-

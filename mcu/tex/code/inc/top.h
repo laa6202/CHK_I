@@ -4,11 +4,5 @@
 int AppInit(void);
 int AppMain(void);
 
-int BeginTick(void);
-int EndTick(void);
-
-int Delay1ms(void);
-int Delay5ms(void);
-int Delay10us(void);
 
 #endif

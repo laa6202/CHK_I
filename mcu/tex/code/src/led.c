@@ -10,7 +10,7 @@ int LedInit(){
 	stLed1 = 0;
 	stLed2 = 1;
 	LED1_GPIO_Port->ODR = LED1_GPIO_Port->ODR | (LED1_Pin);
-	LED2_GPIO_Port->ODR = LED2_GPIO_Port->ODR & (~LED2_Pin);
+	LED2_GPIO_Port->ODR = LED2_GPIO_Port->ODR | (LED2_Pin);
 	return 0;
 }
 
@@ -23,6 +23,19 @@ int Led1Glint(){
 	else {
 		stLed1 = 0;
 		LED1_GPIO_Port->ODR = LED1_GPIO_Port->ODR | (LED1_Pin);
+	}
+	return 0;
+}
+
+
+int Led2Glint(){
+	if(stLed2 == 0){
+		stLed2 = 1; 
+		LED2_GPIO_Port->ODR = LED2_GPIO_Port->ODR & (~LED2_Pin);
+	}
+	else {
+		stLed2 = 0;
+		LED2_GPIO_Port->ODR = LED2_GPIO_Port->ODR | (LED2_Pin);
 	}
 	return 0;
 }
