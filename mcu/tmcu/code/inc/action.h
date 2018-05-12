@@ -15,6 +15,9 @@ int App_ADC1_IRQ(void);
 int App_ADC2_Init(void);
 int App_ADC2_IRQ(void);
 
+int U2_IRQ(void);
+int U3_IRQ(void);
+
 int BeginTick(void);
 int EndTick(void);
 

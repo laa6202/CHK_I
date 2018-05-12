@@ -6,8 +6,8 @@
 int Commu_Init(void);
 int U1_IRQ(void);
 int U1_IRQ_END(void);
-int U2_IRQ(void);
-int U3_IRQ(void);
+int U2RecData(pTPKG);
+U8 GetU2RecBuf(int);
 int U1Send(TPKG);
 int U3Send(U8);
 

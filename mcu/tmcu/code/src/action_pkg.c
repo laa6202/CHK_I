@@ -52,3 +52,10 @@ int SendTPKG(TPKG pkg){
 	U1Send(pkg);
 	return 0;
 }
+
+
+int UpdateTPKG_T1(pTPKG pkg){
+	
+	return 0;
+}
+

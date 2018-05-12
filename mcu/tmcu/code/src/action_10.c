@@ -18,7 +18,7 @@ int GetADC1CH1(pTPKG ptpkg){
 	temp_2 = (temp_1) * 3.3f;
 	temp_3 = temp_2 - 0.76f;
 	temp_4 = temp_3 / 0.0025f;
-	ptpkg->t_core = (U16)((temp_4 + 25)*10);
+	ptpkg->t_core = (U16)((temp_4 + 25)*16);
 	return 0;
 }
 
