@@ -11,6 +11,7 @@
 
 
 
+
 int recU1Number;
 U8 recU1Buf[LEN_U1_BUF];
 int recU1Index;
@@ -19,6 +20,11 @@ U8 recI2C_SendData;
 U8 temp;
 int recI2C_Number;
 int irqI2C_Number;
+
+
+float temp_1,temp_2,temp_3,temp_4;
+uint16_t t1;
+
 
 int U1_Init(){
 	recU1Number = 0;
@@ -29,13 +35,7 @@ int U1_Init(){
 }
 
 
-int U1_IRQ(){
-	if((USART1->SR & USART_SR_RXNE) == USART_SR_RXNE){
-		U1RecData();
-		USART1->SR = USART1->SR & (~USART_SR_RXNE);
-	}
-	return 0;
-}
+
 
 
 int U1RecData(){
@@ -48,7 +48,8 @@ int U1RecData(){
 		return -1;
 	}
 	else{
-		recU1Buf[recU1Index] = recU1Data;
+		if((recU1Index != 16) && (recU1Index != 17))	//16/17 is tem of F103
+			recU1Buf[recU1Index] = recU1Data;	
 		recU1Index++;
 		if(recU1Index == LEN_U1_BUF)	recU1Index = 0;	
 		return 0;
@@ -56,10 +57,7 @@ int U1RecData(){
 }
 
 
-int U1_IRQ_END(){
-	USART1->CR1 = USART1->CR1 | USART_CR1_RXNEIE;
-	return 0;
-}
+
 
 
 int I2C_Init(){
@@ -90,5 +88,19 @@ int I2C_EVIRQ(){
 int I2C_EVIRQ_End(){
 	I2C1->CR2 = I2C1->CR2 | I2C_CR2_ITEVTEN;
 	I2C1->CR1 = I2C1->CR1 | I2C_CR1_ACK;
+	return 0;
+}
+
+
+int GetADCTemp(){
+	//temp = (V25 - Vsen ) / Avg_slope + 25;
+//V25 = 1.34;	Avg_slope = 0.0043;
+	temp_1 = ADC1->JDR1 / 4096.0f;
+	temp_2 = (temp_1) * 3.3f;
+	temp_3 = 1.34 - temp_2 ;
+	temp_4 = temp_3 / 0.0043f;
+	t1 = (U16)((temp_4 + 25)*16);
+	recU1Buf[16] = t1 & 0xff;
+	recU1Buf[17] = (t1 & 0xffff) >> 8;
 	return 0;
 }

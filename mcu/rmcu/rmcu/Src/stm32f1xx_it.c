@@ -36,6 +36,7 @@
 #include "stm32f1xx_it.h"
 
 /* USER CODE BEGIN 0 */
+#include "top.h"
 #include "beep.h"
 #include "commu.h"
 /* USER CODE END 0 */
@@ -206,12 +207,12 @@ void SysTick_Handler(void)
 void ADC1_2_IRQHandler(void)
 {
   /* USER CODE BEGIN ADC1_2_IRQn 0 */
-
+	ADC_IRQ();
   /* USER CODE END ADC1_2_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc1);
   HAL_ADC_IRQHandler(&hadc2);
   /* USER CODE BEGIN ADC1_2_IRQn 1 */
-
+	ADC_IRQ_End();
   /* USER CODE END ADC1_2_IRQn 1 */
 }
 
