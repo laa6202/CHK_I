@@ -10,6 +10,7 @@
 int AppInit(){
 	TIM3_Init();
 	U1_Init();
+	U2_Init();
 	I2C_Init();
 	ADC_Init();
 	return 0;
@@ -39,6 +40,15 @@ int U1_IRQ_END(){
 }
 
 
+int U2_IRQ(){
+	if((USART2->SR & USART_SR_TC) == USART_SR_TC){
+		USART2->SR = USART2->SR & (~USART_SR_TC);
+		U2_SendCon();
+	}
+	return 0;
+}
+
+
 int ADC_Init(void){
 	ADC1->CR1 = ADC1->CR1 | ADC_CR1_JEOCIE;
 	ADC1->CR2 = ADC1->CR2 | ADC_CR2_JEXTTRIG;
@@ -50,6 +60,7 @@ int ADC_Init(void){
 
 int ADC_IRQ(void){
 	GetADCTemp();
+	U2_Send();
 	return 0;
 }
 

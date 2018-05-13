@@ -15,11 +15,10 @@
 int recU1Number;
 U8 recU1Buf[LEN_U1_BUF];
 int recU1Index;
+int sendU2Index;
 U8 recI2C_RecData;
 U8 recI2C_SendData;
-U8 temp;
-int recI2C_Number;
-int irqI2C_Number;
+
 
 
 float temp_1,temp_2,temp_3,temp_4;
@@ -29,13 +28,17 @@ uint16_t t1;
 int U1_Init(){
 	recU1Number = 0;
 	recU1Index = 0;
+
 	memset(recU1Buf,0,LEN_U1_BUF*sizeof(U8));
 	USART1->CR1 = USART1->CR1 | USART_CR1_RXNEIE;
 	return 0;
 }
 
-
-
+int U2_Init(){
+	sendU2Index = 0;
+	USART2->CR1 = USART2->CR1 | USART_CR1_TCIE;
+	return 0;
+}
 
 
 int U1RecData(){
@@ -61,11 +64,8 @@ int U1RecData(){
 
 
 int I2C_Init(){
-	temp = 0;
-	recI2C_Number = 0;
 	recI2C_RecData = 0;
 	recI2C_SendData = 0;
-	irqI2C_Number = 0;
 	I2C1->CR2 = I2C1->CR2 | I2C_CR2_ITEVTEN;
 	I2C1->CR1 = I2C1->CR1 | I2C_CR1_ACK | I2C_CR1_NOSTRETCH; 
 
@@ -77,10 +77,8 @@ int I2C_EVIRQ(){
 	if((I2C1->SR1 & I2C_SR1_RXNE) == I2C_SR1_RXNE){
 		recI2C_RecData = I2C1->DR;
 		recI2C_SendData = recU1Buf[recI2C_RecData];
-		recI2C_Number++;
 	}
 	I2C1->DR = recI2C_SendData;
-	irqI2C_Number++;
 	return 0;
 }
 
@@ -102,5 +100,20 @@ int GetADCTemp(){
 	t1 = (U16)((temp_4 + 25)*16);
 	recU1Buf[16] = t1 & 0xff;
 	recU1Buf[17] = (t1 & 0xffff) >> 8;
+	return 0;
+}
+
+
+int U2_Send(){
+	USART2->DR = recU1Buf[0];
+	sendU2Index = 1;
+	return 0;
+}
+
+int U2_SendCon(){
+	if(sendU2Index < LEN_U1_BUF){
+		USART2->DR = recU1Buf[sendU2Index];
+		sendU2Index++;
+	}
 	return 0;
 }
