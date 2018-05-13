@@ -5,12 +5,13 @@
 #include "string.h"
 
 #define LEN_U2_BUF 10
+#define LEN_U1_BUF 32
 
 uint8_t u2RecBuf[LEN_U2_BUF];
 int 		u2RecIndex;
 int 		u2RecNumber;
-uint8_t u1SendBuf[100];
-uint8_t u1RecBuf[100];
+uint8_t u1SendBuf[LEN_U1_BUF];
+uint8_t u1RecBuf[LEN_U1_BUF];
 int u1SendBytes;
 
 
@@ -23,6 +24,7 @@ int Commu_Init(){
 	CTRL1_GPIO_Port->ODR = CTRL1_GPIO_Port->ODR | CTRL1_Pin;
 	u2RecIndex = 0;
 	u2RecNumber = 0;
+	memset(u1SendBuf,0,LEN_U1_BUF*sizeof(uint8_t));
 	memset(u2RecBuf,0,LEN_U2_BUF*sizeof(uint8_t));
 	return 0;
 }

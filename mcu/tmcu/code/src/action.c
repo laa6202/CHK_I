@@ -53,12 +53,10 @@ int App_Init(){
 int App_Action(){
 
 	if(rdy_A == 1){
-		BeginTick();
 		BufSlice(bufPointA);
 		GetFreq(&pkg_tube);
 		IncTPKG(&pkg_tube);
 		SendTPKG(pkg_tube);
-		EndTick();
 		rdy_A = 0;
 	}
 	
