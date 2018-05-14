@@ -5,6 +5,12 @@
 #include <cal.h>
 #include <types.h>
 
+int CalRec1(pREC1 rec,const U8 * recBuf){
+
+
+	return 0;
+}
+
 
 int CalRot(const U8 * recBuf){
 

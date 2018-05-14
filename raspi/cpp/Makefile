@@ -5,9 +5,11 @@ INCDIR=inc
 OUTDIR=out
 TAR=xmpp
 SRC=main.c \
-		commu.c cal.c action.c record.c
+		commu.c cal.c action.c record.c\
+		alg.c
 OBJ=main.o \
-		commu.o cal.o action.o record.o
+		commu.o cal.o action.o record.o\
+		alg.o
 
 $(TAR) : $(OBJ)
 	$(CC) -o $@ $^ $(LIB)

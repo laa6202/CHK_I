@@ -9,6 +9,8 @@ typedef struct {
 	int rot;
 	int t1;
 	int oil_p;
+	int isM;
+	int error;
 }	REC1, *pREC1;
 
 
