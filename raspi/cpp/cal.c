@@ -8,6 +8,13 @@
 int CalRec1(pREC1 rec,const U8 * recBuf){
 	int rot = CalRot(recBuf);
 	float tCore = CalTCore(recBuf);
+	float t1 = CalT1(recBuf);
+	float t2 = CalT2(recBuf);
+	float oilP = CalOilP(recBuf);
+	int cntM = CalCntM(recBuf);
+	int cntX = CalCntX(recBuf);
+	long sumX = CalSumX(recBuf);
+
 	return 0;
 }
 
@@ -21,14 +28,20 @@ int CalRot(const U8 * recBuf){
 
 
 float CalT1(const U8 * recBuf){
-	
- 	return 0;
+	int tH = (*(recBuf+14) >> 4) | (*(recBuf+15) << 4);
+	int tL = *(recBuf+14) & 0xf;
+	float t1 = tH + tL * 0.0625;
+	printf("t1 = %03.2f\ttH = %02x\ttL = %02x\n",t1,tH,tL);
+ 	return t1;
 }
 
 
 float CalT2(const U8 * recBuf){
-	
- 	return 0;
+	int tH = (*(recBuf+16) >> 4) | (*(recBuf+17) << 4);
+	int tL = *(recBuf+16) & 0xf;
+	float t2 = tH + tL * 0.0625;
+	printf("t2 = %03.2f\ttH = %02x\ttL = %02x\n",t2,tH,tL);
+ 	return t2;
 }
 
 
@@ -42,7 +55,31 @@ float CalTCore(const U8 * recBuf){
 
 
 float CalOilP(const U8 * recBuf){
-
-	return 0;
+	int oilP0 = *(recBuf+12) | (*(recBuf+13) << 8);
+	float oilP = oilP * 1.2 + 100;
+	return oilP;
 }
+
+
+int CalCntM(const U8 * recBuf){
+	int cntM0 = *(recBuf+6) | (*(recBuf+7) << 8);
+	int cntM = cntM0;
+	return cntM;
+}
+
+
+int CalCntX(const U8 * recBuf){
+	int cntX0 = *(recBuf+8) | (*(recBuf+9) << 8);
+	int cntX = cntX0;
+	return cntX;
+}
+
+
+long CalSumX(const U8 * recBuf){
+	int SumX0 = *(recBuf+20) | (*(recBuf+21) << 8) | (*(recBuf+22)<<16) | (*(recBuf+23)<<24);
+	int SumX = SumX0;
+	return SumX;
+}
+
+
 
