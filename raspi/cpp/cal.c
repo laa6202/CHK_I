@@ -7,7 +7,7 @@
 
 int CalRec1(pREC1 rec,const U8 * recBuf){
 	int rot = CalRot(recBuf);
-
+	float tCore = CalTCore(recBuf);
 	return 0;
 }
 
@@ -23,6 +23,21 @@ int CalRot(const U8 * recBuf){
 float CalT1(const U8 * recBuf){
 	
  	return 0;
+}
+
+
+float CalT2(const U8 * recBuf){
+	
+ 	return 0;
+}
+
+
+float CalTCore(const U8 * recBuf){
+	int tH = (*(recBuf+10) >> 4) | (*(recBuf+11) << 4);
+	int tL = *(recBuf+10) & 0xf;
+	float tCore = tH + tL * 0.0625;
+	printf("tCore = %03.2f\ttH = %02x\ttL = %02x\n",tCore,tH,tL);
+ 	return tCore;
 }
 
 
