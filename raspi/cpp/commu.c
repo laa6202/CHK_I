@@ -44,5 +44,21 @@ int ShowTPKG(const U8 *recBuf){
 }
 
 
+int TPKGIsNew(U8 * recBuf,U8 * recBufOld){
+	int isSame = 0;
+	int index = *(recBuf+2) | (*(recBuf+3) << 8);
+	int indexOld = *(recBufOld+2) | (*(recBufOld+3) << 8);
+	if(index == indexOld){
+//		printf("Same : index = %04x\n",index); 
+		isSame = 1;
+	}
+	else {
+//		printf("Diff : index = %04x\n",index); 
+//		printf("Diff : indexOld = %04x\n",indexOld); 
+		isSame = 0;
+	}
+	memcpy(recBufOld,recBuf,LEN_TPKG * sizeof(U8));	
+	return isSame;
+}
 
 

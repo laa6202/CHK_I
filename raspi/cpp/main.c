@@ -9,10 +9,10 @@ int main(int agrc,char *argv[]){
 	wiringPiSetup();
 	AppInit();
 
-	for(int i=0;i<1;i++){
-		AppMain();
-		delay(300);
+	for(int i=0;i<10;i++){
 		printf("Main i=%d\n",i);	
+		AppMain();
+		delay(200);
 	}	
 	return 0;
 }
