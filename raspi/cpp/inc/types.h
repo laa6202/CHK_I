@@ -6,11 +6,13 @@ typedef unsigned short 	U16;
 typedef unsigned int 		U32;
 
 typedef struct {
+	int head;
+	unsigned int index;
 	int rot;
-	int t1;
-	int t2;
-	int tCore;
-	int oilP;
+	float t1;
+	float t2;
+	float tCore;
+	float oilP;
 	int cntM;
 	int cntX;
 	int isM;

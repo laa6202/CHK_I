@@ -7,6 +7,8 @@
 #include <types.h>
 #include <cal.h>
 #include <alg.h>
+#include <record.h>
+
 
 #define LEN_BUF 32
 
@@ -20,7 +22,7 @@ int AppInit(){
 	memset(recBufOld,0,LEN_BUF*sizeof(U8));
 	memset(&rec1,0,sizeof(REC1));
 	I2C_Init();
-	
+	CalInit();	
 	return 0;
 }
 
@@ -32,6 +34,7 @@ int AppMain(){
 		CalRec1(&rec1,recBuf);
 		GetFlag(&rec1);
 		GetError(&rec1);
+		SaveRec1(rec1);
 	}
 	return 0;
 }
