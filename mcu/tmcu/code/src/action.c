@@ -53,12 +53,10 @@ int App_Init(){
 int App_Action(){
 
 	if(rdy_A == 1){
-		BeginTick();
 		BufSlice(bufPointA);
 		GetFreq(&pkg_tube);
 		IncTPKG(&pkg_tube);
 		SendTPKG(pkg_tube);
-		EndTick();
 		rdy_A = 0;
 	}
 	
@@ -132,6 +130,23 @@ int App_ADC2_IRQ(void)
 		GetCntM(&pkg_tube);
 		GetCntX(&pkg_tube);
 		IncIndex();
+	}
+	return 0;
+}
+
+
+int U2_IRQ(){
+	if((USART2->SR & USART_SR_RXNE) == USART_SR_RXNE){
+		U2RecData(&pkg_tube);
+		USART2->SR = USART2->SR & (~USART_SR_RXNE);
+	}
+	return 0;
+}
+
+
+int U3_IRQ(){
+	if((USART3->SR & USART_SR_TC_Msk) == USART_SR_TC_Msk){
+		USART3->SR = USART3->SR & (~USART_SR_TC_Msk);
 	}
 	return 0;
 }

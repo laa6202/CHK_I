@@ -4,11 +4,14 @@
 #include "types.h"
 #include "string.h"
 
+#define LEN_U2_BUF 10
+#define LEN_U1_BUF 32
 
-uint8_t u2SendBuf[100];
-uint8_t u2RevBuf[100];
-uint8_t u1SendBuf[100];
-uint8_t u1RevBuf[100];
+uint8_t u2RecBuf[LEN_U2_BUF];
+int 		u2RecIndex;
+int 		u2RecNumber;
+uint8_t u1SendBuf[LEN_U1_BUF];
+uint8_t u1RecBuf[LEN_U1_BUF];
 int u1SendBytes;
 
 
@@ -19,6 +22,10 @@ int Commu_Init(){
 	USART2->CR1 = USART2->CR1 | USART_CR1_RXNEIE;
 	u1SendBytes = 0;
 	CTRL1_GPIO_Port->ODR = CTRL1_GPIO_Port->ODR | CTRL1_Pin;
+	u2RecIndex = 0;
+	u2RecNumber = 0;
+	memset(u1SendBuf,0,LEN_U1_BUF*sizeof(uint8_t));
+	memset(u2RecBuf,0,LEN_U2_BUF*sizeof(uint8_t));
 	return 0;
 }
 
@@ -40,20 +47,37 @@ int U1_IRQ_END(){
 }
 
 
-int U2_IRQ(){
-	
-	
-	return 0;
-}
 
 
-int U3_IRQ(){
-	if((USART3->SR & USART_SR_TC_Msk) == USART_SR_TC_Msk){
-		USART3->SR = USART3->SR & (~USART_SR_TC_Msk);
+
+int U2RecData(pTPKG pkg){
+	u2RecNumber++;
+	uint8_t u2RecData = USART2->DR;
+	if((u2RecIndex == 0) &&(u2RecData != 0x54)){
+		u2RecIndex = 0;
+		return -1;
 	}
-	return 0;
+	else if((u2RecIndex == 1) &&(u2RecData != 0x31)){
+		u2RecIndex = 0;
+		return -1;
+	}
+	else {
+		u2RecBuf[u2RecIndex] = u2RecData;
+		u2RecIndex++;
+		if(u2RecIndex == 4)	{
+			u2RecIndex = 0;
+			pkg->t_1 = u2RecBuf[2] << 8 | u2RecBuf[3];
+		}
+		return 0;
+	}
 }
 
+
+U8 GetU2RecBuf(int index){
+	uint8_t q;
+	q = u2RecBuf[index];
+	return q;
+}
 
 
 
