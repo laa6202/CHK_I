@@ -6,6 +6,7 @@
 #include <commu.h>
 #include <types.h>
 #include <cal.h>
+#include <alg.h>
 
 #define LEN_BUF 32
 
@@ -29,6 +30,8 @@ int AppMain(){
 	if(!TPKGIsNew(recBuf,recBufOld)){
 		ShowTPKG(recBuf);
 		CalRec1(&rec1,recBuf);
+		GetFlag(&rec1);
+		GetError(&rec1);
 	}
 	return 0;
 }

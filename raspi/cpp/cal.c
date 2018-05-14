@@ -5,6 +5,8 @@
 #include <cal.h>
 #include <types.h>
 
+#define EN_SHOW 0
+
 int CalRec1(pREC1 rec,const U8 * recBuf){
 	int rot = CalRot(recBuf);
 	float tCore = CalTCore(recBuf);
@@ -14,7 +16,13 @@ int CalRec1(pREC1 rec,const U8 * recBuf){
 	int cntM = CalCntM(recBuf);
 	int cntX = CalCntX(recBuf);
 	long sumX = CalSumX(recBuf);
-
+	rec->rot = rot;
+	rec->t1 = t1;
+	rec->t2 = t2;
+	rec->tCore = tCore;
+	rec->oilP = oilP;
+	rec->cntM = cntM;
+	rec->cntX = cntX;
 	return 0;
 }
 
@@ -22,7 +30,7 @@ int CalRec1(pREC1 rec,const U8 * recBuf){
 int CalRot(const U8 * recBuf){
 	int rot0 = *(recBuf+4) | (*(recBuf+5) << 8);
 	int rot = rot0 * 50;
-	printf("rot0 = %d\t rot = %d\n",rot0,rot);
+	if(EN_SHOW) printf("rot0 = %d\t rot = %d\n",rot0,rot);
 	return 0;
 }
 
@@ -31,7 +39,7 @@ float CalT1(const U8 * recBuf){
 	int tH = (*(recBuf+14) >> 4) | (*(recBuf+15) << 4);
 	int tL = *(recBuf+14) & 0xf;
 	float t1 = tH + tL * 0.0625;
-	printf("t1 = %03.2f\ttH = %02x\ttL = %02x\n",t1,tH,tL);
+	if(EN_SHOW)	printf("t1 = %03.2f\ttH = %02x\ttL = %02x\n",t1,tH,tL);
  	return t1;
 }
 
@@ -40,7 +48,7 @@ float CalT2(const U8 * recBuf){
 	int tH = (*(recBuf+16) >> 4) | (*(recBuf+17) << 4);
 	int tL = *(recBuf+16) & 0xf;
 	float t2 = tH + tL * 0.0625;
-	printf("t2 = %03.2f\ttH = %02x\ttL = %02x\n",t2,tH,tL);
+	if(EN_SHOW)	printf("t2 = %03.2f\ttH = %02x\ttL = %02x\n",t2,tH,tL);
  	return t2;
 }
 
@@ -49,7 +57,7 @@ float CalTCore(const U8 * recBuf){
 	int tH = (*(recBuf+10) >> 4) | (*(recBuf+11) << 4);
 	int tL = *(recBuf+10) & 0xf;
 	float tCore = tH + tL * 0.0625;
-	printf("tCore = %03.2f\ttH = %02x\ttL = %02x\n",tCore,tH,tL);
+	if(EN_SHOW)	printf("tCore = %03.2f\ttH = %02x\ttL = %02x\n",tCore,tH,tL);
  	return tCore;
 }
 

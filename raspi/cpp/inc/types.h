@@ -10,7 +10,7 @@ typedef struct {
 	int t1;
 	int t2;
 	int tCore;
-	int oil_p;
+	int oilP;
 	int cntM;
 	int cntX;
 	int isM;
