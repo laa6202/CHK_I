@@ -5,8 +5,8 @@ import pygame,sys
 from pygame.locals import *
 
 FPS = 2
-WINWIDTH=900
-WINHEIGHT=480
+WINWIDTH=1200
+WINHEIGHT=600
 FNLOGO = 'logo.png'
 FNTITLE = 'Title.png'
 FNSYSOK = 'sysOK.png'
@@ -55,7 +55,7 @@ def ShowAll(stDirPic):
     ShowSysStatus(stDirPic,stSYS,(0,120))
    # ShowTime(BLUE,(500,128))
     ShowRPM(stDirPic,(0,160))
-    ShowTEM(stDirPic,(-20,320))
+    ShowTEM(stDirPic,(0,360))
 
 
 
@@ -114,7 +114,7 @@ def ShowRPM(stDirPic,pos):
     surRPM = objFont.render(str(rpm),True,YELLOW)
     pos2 = list(pos)
     pos2[0] += 420
-    pos2[1] += 80
+    pos2[1] += 0
     print(pos)
     DIS.blit(surRPM,pos2)
 
