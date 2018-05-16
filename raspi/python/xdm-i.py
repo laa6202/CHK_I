@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-
 import datetime
 import random
 import pygame,sys
 from pygame.locals import *
 
 FPS = 2
-WINWIDTH=720
+WINWIDTH=900
 WINHEIGHT=480
 FNLOGO = 'logo.png'
 FNTITLE = 'Title.png'
@@ -30,6 +29,8 @@ BGCOLOR = WHITE
 
 def main():
     global FPSCLOCK,DIS
+    global stSYS
+    stSYS = 0
     stDirPic = PicDirInit()
     DIS=DisInit()
     FPSCLOCK = pygame.time.Clock()
@@ -49,10 +50,10 @@ def main():
 
 def ShowAll(stDirPic):
     ShowLogo(stDirPic,(0,0))
-    ShowTitle(stDirPic,(100,0))
-    pygame.draw.line(DIS,NAVYBLUE,(10,110),(710,110),3)
-    ShowSysStatus(stDirPic,0,(0,120))
-    ShowTime(BLUE,(500,128))
+    ShowTitle(stDirPic,(200,0))
+    pygame.draw.line(DIS,NAVYBLUE,(10,110),(WINWIDTH-10,110),3)
+    ShowSysStatus(stDirPic,stSYS,(0,120))
+   # ShowTime(BLUE,(500,128))
     ShowRPM(stDirPic,(0,160))
     ShowTEM(stDirPic,(-20,320))
 
@@ -69,7 +70,7 @@ def ShowLogo(stDirPic,pos):
     fnLogo = stDirPic + '/' + FNLOGO
     #print(fnLogo,type(fnLogo),pos)
     surLogoSrc = pygame.image.load(fnLogo)
-    surLogoDst = pygame.transform.scale(surLogoSrc,(100,100))
+    surLogoDst = pygame.transform.scale(surLogoSrc,(200,100))
     DIS.blit(surLogoDst,pos)    
 
 
@@ -127,8 +128,8 @@ def ShowTEM(stDirPic,pos):
 
 def DisInit():
     pygame.init()
-    DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT),pygame.FULLSCREEN|pygame.HWSURFACE)
-    #DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT))
+    #DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT),pygame.FULLSCREEN|pygame.HWSURFACE)
+    DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT))
     pygame.display.set_caption("XDM_I")
     DIS.fill(BGCOLOR)
     return DIS
