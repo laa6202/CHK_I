@@ -6,8 +6,8 @@ from pygame.locals import *
 import os
 
 FPS = 2
-WINWIDTH=1200
-WINHEIGHT=600
+WINWIDTH=1180
+WINHEIGHT=590
 FNLOGO = 'logo.png'
 FNTITLE = 'Title.png'
 FNSYSOK = 'sysOK.png'
@@ -17,7 +17,7 @@ FNRPM = 'rpm.png'
 FNOIL = 'oil.png'
 FNTEM = 'tem.png'
 FNXXX = 'xxx.png'
-
+FNAAA = 'a.jpg'
 
 
 #           R   G   B
@@ -34,7 +34,7 @@ BGCOLOR = WHITE
 def main():
     global FPSCLOCK
 #    global DIS
-    fnValue = 'rec2.dat'
+    fnValue = '../cpp/rec11.dat'
     stSYS = 0
     rot = 3200
     tem = 85.07
@@ -54,6 +54,7 @@ def main():
         DIS.fill(WHITE)
         GetValue(fnValue)
         ShowAll(stDirPic)
+        ShowAAA(stDirPic)
         pygame.display.update()
         FPSCLOCK.tick(FPS)
 
@@ -73,8 +74,18 @@ def GetValue(fnValue) :
     s = fd.readline()
     s = fd.readline()
     s = fd.readline()
+    rot = int(s)
     s = fd.readline()
-    print(str(float(s)))
+    s = fd.readline()
+    tem = float(s)
+    s = fd.readline()
+    s = fd.readline()
+    oil = float(s)
+    s = fd.readline()
+    s = fd.readline()
+    xxx = int(s)
+    s = fd.readline()
+    stSYS = int(s)
     fd.close()
     
 
@@ -198,11 +209,23 @@ def ShowXXX(stDirPic,xxx,pos) :
     DIS.blit(surXXX,pos)
 
 
+def ShowAAA(stDirPic):
+    fnAAA = stDirPic + '/' + FNAAA
+    #print(fnLogo,type(fnLogo),pos)
+    surAAASrc = pygame.image.load(fnAAA)
+    surAAADst = pygame.transform.scale(surAAASrc,(400,400))
+    global DIS
+    pos = (750,180)
+    DIS.blit(surAAADst,pos)    
+
+
+
+
 def DisInit():
     pygame.init()
-    #DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT),pygame.FULLSCREEN|pygame.HWSURFACE)
     global DIS
-    DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT))
+    DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT),pygame.FULLSCREEN|pygame.HWSURFACE)
+    #DIS = pygame.display.set_mode((WINWIDTH,WINHEIGHT))
     pygame.display.set_caption("XDM_I")
     DIS.fill(BGCOLOR)
     return DIS

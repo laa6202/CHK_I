@@ -9,10 +9,15 @@ int main(int agrc,char *argv[]){
 	wiringPiSetup();
 	AppInit();
 
-	for(int i=0;i<10;i++){
+	int i=0;
+	while(1){
+		i++;
 		printf("Main i=%d\n",i);	
 		AppMain();
 		delay(200);
+
+		if(i>1000)
+			break;
 	}	
 	return 0;
 }
