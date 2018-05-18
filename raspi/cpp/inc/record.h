@@ -4,6 +4,7 @@
 #include <types.h>
 
 int SaveRec1(REC1);
+int SaveRec11(REC1);
 int SaveRec2(REC2);
 
 #endif

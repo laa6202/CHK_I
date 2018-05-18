@@ -34,7 +34,7 @@ int AppMain(){
 		CalRec1(&rec1,recBuf);
 		GetFlag(&rec1);
 		GetError(&rec1);
-		SaveRec1(rec1);
+		SaveRec11(rec1);
 	}
 	return 0;
 }
