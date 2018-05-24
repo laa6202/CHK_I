@@ -10,7 +10,7 @@
 
 
 int index_point = 0;
-int sel_send = 0;
+int sel_send = 2;
 int th_m = 0x100;
 int th_x = 0x100;
 
