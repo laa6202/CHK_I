@@ -31,7 +31,7 @@ int BufSlice(float* bufA){
 
 int GetFreq(pTPKG pkg){
 	float  freq = 0;
-	TestData(&sliceA);
+//	TestData(&sliceA);
 	SliceRFFT(&sliceA);
 	ABSFreq(&sliceA);
 	FirFreq(8);

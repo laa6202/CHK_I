@@ -13,11 +13,11 @@ float temp_4 = 0;
 	
 int GetADC1CH1(pTPKG ptpkg){
 //temp = (Vsen - V25) / Avg_slope + 25;
-//V25 = 1.43;	Avg_slope = 0.0043;
+//V25 = 0.76;	Avg_slope = 0.0025;
 	temp_1 = ADC1->JDR1 / 4096.0f;
 	temp_2 = (temp_1) * 3.3f;
-	temp_3 = temp_2 - 1.43f;
-	temp_4 = temp_3 / 0.0043f;
+	temp_3 = temp_2 - 0.76f;
+	temp_4 = temp_3 / 0.0025f;
 	ptpkg->t_core = (U16)((temp_4 + 25)*16);
 	return 0;
 }
