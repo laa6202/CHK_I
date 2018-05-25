@@ -6,7 +6,7 @@ clear all
 clc
 
 %1 
-fn1 = 'd18525_14934.dat';
+fn1 = 'd18525_171455.dat';
 fid1 =  fopen(fn1,'r');
 
 
