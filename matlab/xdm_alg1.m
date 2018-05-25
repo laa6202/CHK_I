@@ -6,7 +6,7 @@ clear all
 clc
 
 %1 
-fn1 = 'd18524_205919.dat';
+fn1 = 'd18525_14934.dat';
 fid1 =  fopen(fn1,'r');
 
 
@@ -39,6 +39,50 @@ end
 
 %5 fm
 fm = zeros(2000,slice_all);
+for i=1:slice_all
+	fm(:,i) = f(1:2000,i);
+end
+
+
+%6 m
+m = zeros(1,slice_all);
+for i=1:slice_all
+	m(1,i) = mean(fm(:,i));
+end
+
+
+%7
+mz = zeros(1,slice_all-4);
+for i=1:slice_all-4
+	mz(1,i) = (m(1,i) + m(1,i+1) + m(1,i+2) + m(1,i+3) + m(1,i+4)) /5;
+end
+
+
+%8 rot
+b = 60;
+h = 150;
+rot = zeros(1,slice_all);
+for i=1:slice_all-4
+	y = mz(1,i) - 60;
+	y1 = y / (h-b);
+	y2 = y1 * 28;
+	y3 = ceil(y2);
+	if y3 > 28
+		y3 = 28;
+	end
+	if y3 < 0
+		y3 = 0;
+	end
+	y4 = y3 * 100;
+	rot(1,i) = y4;
+end
+
+
+%9 plot
+subplot(1,2,1);
+plot(m);
+subplot(1,2,2);
+plot(rot);
 
 
 fclose(fid1);

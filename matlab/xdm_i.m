@@ -7,7 +7,7 @@ clc
 
 %1. global varialbe
 com_num = 'COM13';
-total_sec = 30;
+total_sec = 180;
 
 
 %2. file name
