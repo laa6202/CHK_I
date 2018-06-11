@@ -49,24 +49,14 @@
 
 /* Private define ------------------------------------------------------------*/
 
-#define LED_Pin GPIO_PIN_13
-#define LED_GPIO_Port GPIOC
-#define R2S1_Pin GPIO_PIN_0
-#define R2S1_GPIO_Port GPIOB
-#define R2S2_Pin GPIO_PIN_1
-#define R2S2_GPIO_Port GPIOB
-#define BEEP_Pin GPIO_PIN_11
+#define LED_103_Pin GPIO_PIN_13
+#define LED_103_GPIO_Port GPIOC
+#define IO1_103_Pin GPIO_PIN_0
+#define IO1_103_GPIO_Port GPIOB
+#define BEEP_Pin GPIO_PIN_2
 #define BEEP_GPIO_Port GPIOB
-#define S2R3_Pin GPIO_PIN_3
-#define S2R3_GPIO_Port GPIOB
-#define S2R2_Pin GPIO_PIN_4
-#define S2R2_GPIO_Port GPIOB
-#define S2R1_Pin GPIO_PIN_5
-#define S2R1_GPIO_Port GPIOB
-#define R2S4_Pin GPIO_PIN_8
-#define R2S4_GPIO_Port GPIOB
-#define R2S3_Pin GPIO_PIN_9
-#define R2S3_GPIO_Port GPIOB
+#define IO3_103_Pin GPIO_PIN_3
+#define IO3_103_GPIO_Port GPIOB
 
 /* ########################## Assert Selection ############################## */
 /**
