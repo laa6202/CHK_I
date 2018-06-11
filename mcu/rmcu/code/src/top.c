@@ -5,9 +5,12 @@
 #include "beep.h"
 #include "commu.h"
 
+int appLift;
+
 
 
 int AppInit(){
+	appLift = 0;
 	TIM3_Init();
 	U1_Init();
 	U2_Init();
@@ -19,6 +22,11 @@ int AppInit(){
 
 int AppMain(){
 	
+	appLift++;
+	if((appLift & 0xfffff) > 0x80000)
+		LED_103_GPIO_Port-> ODR |= LED_103_Pin;
+	else 
+		LED_103_GPIO_Port-> ODR &= (~LED_103_Pin);
 	
 	IWDG->KR = 0xAAAA;
 	return 0;
