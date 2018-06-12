@@ -29,6 +29,8 @@ int Value_Init(){
 	rdy_B = 0;
 	arm_fill_f32(0,bufPointA,LEN_BUF);
 	arm_fill_f32(0,bufPointB,LEN_BUF);
+	//CTRL1_GPIO_Port->ODR  &= (~CTRL1_Pin);
+	//CTRL2_GPIO_Port->ODR  &= (~CTRL2_Pin);
 
 	TPKG_Init(&pkg_tube);
 	return 0;
