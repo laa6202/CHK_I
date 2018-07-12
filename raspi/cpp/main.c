@@ -16,7 +16,7 @@ int main(int agrc,char *argv[]){
 		AppMain();
 		delay(200);
 
-		if(i>1000)
+		if(i>10000)
 			break;
 	}	
 	return 0;
