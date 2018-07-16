@@ -4,23 +4,33 @@
 #include "opencv2/opencv.hpp"
 
 #include "gui_action.h"
+#include "gui_mat.h"
+#include "gui_dm.h"
+
 
 char winName[20];
 
 void *GUI_Action(void * args){
 	printf("...GUI_Action: \n");
+	strcpy(winName,"XDM-I");
 	struct timeval tv;
+
 	CvCapture *cam;
-	IplImage * m1;
-
-	strcpy(winName,"aa");
-
+	IplImage *mat;
+	mat = cvCreateImage(cvSize(1200,720),IPL_DEPTH_8U,4);
 	cvNamedWindow(winName);
+	cvSetWindowProperty(winName,CV_WND_PROP_FULLSCREEN,CV_WINDOW_FULLSCREEN);
+	
+	BuildBase(mat);
+	BuildTitle(mat);
+	BuildLogo(mat);
+
+
 	cam = cvCaptureFromCAM(0);
 
 	while(1){
-		m1 = cvQueryFrame(cam);
-		cvShowImage(winName,m1);
+		BuildCam(mat,cam);
+		cvShowImage(winName,mat);
 
 		char key = cvWaitKey(100);
 		if(key == 'q')
