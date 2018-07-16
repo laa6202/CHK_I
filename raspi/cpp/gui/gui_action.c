@@ -17,7 +17,7 @@ void *GUI_Action(void * args){
 
 	CvCapture *cam;
 	IplImage *mat;
-	mat = cvCreateImage(cvSize(1200,720),IPL_DEPTH_8U,4);
+	mat = cvCreateImage(cvSize(MAT_W,MAT_H),IPL_DEPTH_8U,3);
 	cvNamedWindow(winName);
 	cvSetWindowProperty(winName,CV_WND_PROP_FULLSCREEN,CV_WINDOW_FULLSCREEN);
 	
