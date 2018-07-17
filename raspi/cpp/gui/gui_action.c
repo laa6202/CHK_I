@@ -3,6 +3,7 @@
 #include <sys/time.h>
 #include "opencv2/opencv.hpp"
 
+#include "gui_types.h"
 #include "gui_action.h"
 #include "gui_mat.h"
 #include "gui_dm.h"
@@ -14,9 +15,11 @@ void *GUI_Action(void * args){
 	printf("...GUI_Action: \n");
 	strcpy(winName,"XDM-I");
 	struct timeval tv;
-
+	
+	BSHOW blockShow;
 	CvCapture *cam;
 	IplImage *mat;
+	IplImage *matRef;
 	mat = cvCreateImage(cvSize(MAT_W,MAT_H),IPL_DEPTH_8U,3);
 	cvNamedWindow(winName);
 	cvSetWindowProperty(winName,CV_WND_PROP_FULLSCREEN,CV_WINDOW_FULLSCREEN);
@@ -25,10 +28,13 @@ void *GUI_Action(void * args){
 //	BuildTitle(mat);
 //	BuildLogo(mat);
 
-
+	matRef = cvCloneImage(mat);
 	cam = cvCaptureFromCAM(0);
 
 	while(1){
+		cvCopy(matRef,mat);
+		GetBlock(&blockShow);
+		ShowRPM(mat,blockShow);
 		BuildCam(mat,cam);
 		cvShowImage(winName,mat);
 
