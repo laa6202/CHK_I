@@ -22,8 +22,8 @@ void *GUI_Action(void * args){
 	cvSetWindowProperty(winName,CV_WND_PROP_FULLSCREEN,CV_WINDOW_FULLSCREEN);
 	
 	BuildBase(mat);
-	BuildTitle(mat);
-	BuildLogo(mat);
+//	BuildTitle(mat);
+//	BuildLogo(mat);
 
 
 	cam = cvCaptureFromCAM(0);
