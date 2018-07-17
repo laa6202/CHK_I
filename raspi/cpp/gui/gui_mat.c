@@ -48,8 +48,30 @@ int BuildLogo(IplImage * mat){
 
 
 int BuildCam(IplImage * mat, CvCapture * cam){
+	IplImage * mCam;
+	IplImage * mCam2;
+	int camW = 450;
+	int camH = 450;
+	int camTop = 200;
+	int camLeft = 650;
+	if(cam == NULL){
+		char fnCam[200];	memset(fnCam,0,200*sizeof(char));
+		getcwd(fnCam,200);
+		strcat(fnCam,"/pic/noCam.jpg");
+		mCam = cvLoadImage(fnCam);
+//		printf("no cam = %d\n",cam);
+	}
+	else{ 
+		mCam = cvQueryFrame(cam);
+	}
+//	cvShowImage("Cam",mCam);
+	mCam2 = cvCreateImage(cvSize(camW,camH),mCam->depth,mCam->nChannels);
+	cvResize(mCam,mCam2);
 
-
+	CvRect roiTitle = cvRect(camLeft,camTop,camW,camH);
+	cvSetImageROI(mat,roiTitle);
+	cvCopy(mCam2,mat);
+	cvResetImageROI(mat);
 
 	return 0;
 }
