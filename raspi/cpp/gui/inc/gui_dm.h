@@ -3,6 +3,7 @@
 
 #include "gui_types.h"
 
+int GetBlockTest(pBSHOW);
 int GetBlock(pBSHOW);
 
 

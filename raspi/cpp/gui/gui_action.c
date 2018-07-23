@@ -28,13 +28,15 @@ void *GUI_Action(void * args){
 //	BuildTitle(mat);
 //	BuildLogo(mat);
 
-	matRef = cvCloneImage(mat);
+	matRef = cvCloneImage(mat); //matRef is base 
 	cam = cvCaptureFromCAM(0);
 
 	while(1){
 		cvCopy(matRef,mat);
-		GetBlock(&blockShow);
+		GetBlockTest(&blockShow);
 		ShowRPM(mat,blockShow);
+		ShowTem(mat,blockShow);
+//		ShowFlag(mat,blockShow);
 		BuildCam(mat,cam);
 		cvShowImage(winName,mat);
 

@@ -12,6 +12,7 @@ int BuildLogo(IplImage *);
 int BuildCam(IplImage *,CvCapture *);
 
 int ShowRPM(IplImage *,BSHOW);
+int ShowTem(IplImage *,BSHOW);
 
 #endif
 

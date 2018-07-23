@@ -80,20 +80,44 @@ int BuildCam(IplImage * mat, CvCapture * cam){
 int ShowRPM(IplImage * mat,BSHOW block){
 
 	CvFont fontRPM;
-	double hS =1;
-	double vS =1;
+	double hS =1.8;
+	double vS =1.8;
 	int lineW = 2;
 	char cRPM[40];	memset(cRPM,0,40*sizeof(char));
-	sprintf(cRPM,"%d RPM",block.rpm);
+	int rpm = block.rpm;
+	sprintf(cRPM,"%d",rpm);
 //	fontRPM = cvFontQt("Times");
 //	cvAddText(mat,cRPM,cvPoint(300,250),&fontRPM);
 	cvInitFont(&fontRPM,CV_FONT_HERSHEY_SIMPLEX,hS,vS,0,lineW);
-	cvPutText(mat,cRPM,cvPoint(300,250),&fontRPM,CV_RGB(255,0,0));
-
+	if(rpm < 2300)
+		cvPutText(mat,cRPM,cvPoint(350,310),&fontRPM,CV_RGB(255,0,0));
+	else 
+		cvPutText(mat,cRPM,cvPoint(350,310),&fontRPM,CV_RGB(20,200,20));
 	return 0;
 }
 
 
+
+
+int ShowTem(IplImage * mat,BSHOW block){
+
+	CvFont font;
+	double hS =1.8;
+	double vS =1.8;
+	int lineW = 2;
+	float tem = block.tem;
+	char cTem[40];	memset(cTem,0,40*sizeof(char));
+	sprintf(cTem,"%02.1f",block.tem);
+//	fontRPM = cvFontQt("Times");
+//	cvAddText(mat,cRPM,cvPoint(300,250),&fontRPM);
+	cvInitFont(&font,CV_FONT_HERSHEY_SIMPLEX,hS,vS,0,lineW);
+	if(tem <= 69)
+		cvPutText(mat,cTem,cvPoint(350,450),&font,CV_RGB(20,200,20));
+	else
+		cvPutText(mat,cTem,cvPoint(350,450),&font,CV_RGB(255,0,0));
+
+	return 0;
+}
 
 
 
