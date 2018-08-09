@@ -3,10 +3,8 @@ Version=1.0
 [Project1]
 ProjectPath=Tube02\Tube02.PrjPCB
 [Project2]
-ProjectPath=Tex01\Tex01.PrjPCB
-[Project3]
-ProjectPath=Room02\Room02.PrjPCB
-[Project4]
 ProjectPath=Rcon01\Rcon01.PrjPCB
-[Project5]
+[Project3]
 ProjectPath=Room03\Room03.PrjPCB
+[Project4]
+ProjectPath=Room04\Room04.PrjPCB
