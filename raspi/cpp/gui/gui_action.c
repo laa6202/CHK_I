@@ -25,19 +25,17 @@ void *GUI_Action(void * args){
 	cvSetWindowProperty(winName,CV_WND_PROP_FULLSCREEN,CV_WINDOW_FULLSCREEN);
 	
 	BuildBase(mat);
-//	BuildTitle(mat);
-//	BuildLogo(mat);
 
 	matRef = cvCloneImage(mat); //matRef is base 
 	cam = cvCaptureFromCAM(0);
 
 	while(1){
-//		cvCopy(matRef,mat);
-//		GetBlockTest(&blockShow);
-//		ShowRPM(mat,blockShow);
-//		ShowTem(mat,blockShow);
-//		ShowFlag(mat,blockShow);
-//		BuildCam(mat,cam);
+		cvCopy(matRef,mat);
+		GetBlockTest(&blockShow);
+		ShowRPM(mat,blockShow);
+		ShowTem(mat,blockShow);
+		ShowFlag(mat,blockShow);
+		BuildCam(mat,cam);
 		cvShowImage(winName,mat);
 
 		char key = cvWaitKey(100);
