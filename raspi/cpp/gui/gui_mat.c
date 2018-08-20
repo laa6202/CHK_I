@@ -11,9 +11,10 @@ int BuildBase(IplImage * mat){
 	IplImage *mBase;
 	char fnBase[200];	memset(fnBase,0,200*sizeof(char));
 	getcwd(fnBase,200);
-	strcat(fnBase,"/pic/base2.png");
+	strcat(fnBase,"/pic/base3.png");
 	mBase = cvLoadImage(fnBase);
-	cvCopy(mBase,mat);
+	cvResize(mBase,mat);
+//	cvCopy(mBase,mat);
 //	cvShowImage("base2",mat);
 	return 0;
 }

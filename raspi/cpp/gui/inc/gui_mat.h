@@ -1,8 +1,8 @@
 #ifndef __GUI_MAT_H
 #define __GUI_MAT_H
 
-#define MAT_W 1200
-#define MAT_H 720
+#define MAT_W 800 
+#define MAT_H 600
 
 #include "gui_types.h"
 

@@ -21,7 +21,7 @@ void *GUI_Action(void * args){
 	IplImage *mat;
 	IplImage *matRef;
 	mat = cvCreateImage(cvSize(MAT_W,MAT_H),IPL_DEPTH_8U,3);
-	cvNamedWindow(winName);
+	cvNamedWindow(winName,CV_WINDOW_NORMAL);
 	cvSetWindowProperty(winName,CV_WND_PROP_FULLSCREEN,CV_WINDOW_FULLSCREEN);
 	
 	BuildBase(mat);
@@ -32,12 +32,12 @@ void *GUI_Action(void * args){
 	cam = cvCaptureFromCAM(0);
 
 	while(1){
-		cvCopy(matRef,mat);
-		GetBlockTest(&blockShow);
-		ShowRPM(mat,blockShow);
-		ShowTem(mat,blockShow);
+//		cvCopy(matRef,mat);
+//		GetBlockTest(&blockShow);
+//		ShowRPM(mat,blockShow);
+//		ShowTem(mat,blockShow);
 //		ShowFlag(mat,blockShow);
-		BuildCam(mat,cam);
+//		BuildCam(mat,cam);
 		cvShowImage(winName,mat);
 
 		char key = cvWaitKey(100);
