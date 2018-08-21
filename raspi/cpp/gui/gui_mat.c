@@ -11,9 +11,10 @@ int BuildBase(IplImage * mat){
 	IplImage *mBase;
 	char fnBase[200];	memset(fnBase,0,200*sizeof(char));
 	getcwd(fnBase,200);
-	strcat(fnBase,"/pic/base2.png");
+	strcat(fnBase,"/pic/base3.png");
 	mBase = cvLoadImage(fnBase);
-	cvCopy(mBase,mat);
+	cvResize(mBase,mat);
+//	cvCopy(mBase,mat);
 //	cvShowImage("base2",mat);
 	return 0;
 }
@@ -50,10 +51,10 @@ int BuildLogo(IplImage * mat){
 int BuildCam(IplImage * mat, CvCapture * cam){
 	IplImage * mCam;
 	IplImage * mCam2;
-	int camW = 450;
-	int camH = 450;
-	int camTop = 200;
-	int camLeft = 650;
+	int camW = 360;
+	int camH = 360;
+	int camTop = 180;
+	int camLeft = 410;
 	if(cam == NULL){
 		char fnCam[200];	memset(fnCam,0,200*sizeof(char));
 		getcwd(fnCam,200);
@@ -90,9 +91,9 @@ int ShowRPM(IplImage * mat,BSHOW block){
 //	cvAddText(mat,cRPM,cvPoint(300,250),&fontRPM);
 	cvInitFont(&fontRPM,CV_FONT_HERSHEY_SIMPLEX,hS,vS,0,lineW);
 	if(rpm < 2300)
-		cvPutText(mat,cRPM,cvPoint(350,310),&fontRPM,CV_RGB(255,0,0));
+		cvPutText(mat,cRPM,cvPoint(240,260),&fontRPM,CV_RGB(255,0,0));
 	else 
-		cvPutText(mat,cRPM,cvPoint(350,310),&fontRPM,CV_RGB(20,200,20));
+		cvPutText(mat,cRPM,cvPoint(240,260),&fontRPM,CV_RGB(20,200,20));
 	return 0;
 }
 
@@ -112,9 +113,16 @@ int ShowTem(IplImage * mat,BSHOW block){
 //	cvAddText(mat,cRPM,cvPoint(300,250),&fontRPM);
 	cvInitFont(&font,CV_FONT_HERSHEY_SIMPLEX,hS,vS,0,lineW);
 	if(tem <= 69)
-		cvPutText(mat,cTem,cvPoint(350,450),&font,CV_RGB(20,200,20));
+		cvPutText(mat,cTem,cvPoint(240,370),&font,CV_RGB(20,200,20));
 	else
-		cvPutText(mat,cTem,cvPoint(350,450),&font,CV_RGB(255,0,0));
+		cvPutText(mat,cTem,cvPoint(240,370),&font,CV_RGB(255,0,0));
+
+	return 0;
+}
+
+
+int ShowFlag(IplImage * mat,BSHOW block){
+
 
 	return 0;
 }
