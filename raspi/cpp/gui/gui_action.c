@@ -29,9 +29,11 @@ void *GUI_Action(void * args){
 	matRef = cvCloneImage(mat); //matRef is base 
 	cam = cvCaptureFromCAM(0);
 
-	while(1){
+	while(1)
+	{
 		cvCopy(matRef,mat);
 		GetBlockTest(&blockShow);
+		GetBlock(&blockShow);
 		ShowRPM(mat,blockShow);
 		ShowTem(mat,blockShow);
 		ShowFlag(mat,blockShow);

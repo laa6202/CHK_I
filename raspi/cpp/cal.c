@@ -2,8 +2,9 @@
 
 #include <stdio.h>
 
-#include <cal.h>
 #include <types.h>
+#include <cal.h>
+#include <alg.h>
 
 #define EN_SHOW 0
 
@@ -41,9 +42,16 @@ int CalRec1(pREC1 rec,const U8 * recBuf){
 
 int CalRot(const U8 * recBuf){
 	int rot0 = *(recBuf+4) | (*(recBuf+5) << 8);
-	int rot = rot0 * 50;
-	if(EN_SHOW) printf("rot0 = %d\t rot = %d\n",rot0,rot);
-	return rot;
+	int rot = rot0 ;
+	int rot1 = RotGap(rot);
+	int rot_d = RotFIR5(rot1);
+//	int rot_d = RotAve(rot,5);
+	int rot_f = RotModK(rot_d);
+//	int rot_100 = rot_f;
+	int rot_100 = RotMod100(rot_f);
+
+//	if(EN_SHOW) printf("rot = %d\t rot_d = %d\n",rot,rot_d);
+	return rot_100;
 }
 
 
