@@ -29,7 +29,7 @@ int AppInit(){
 
 int AppMain(){
 	GetTPKG(recBuf);
-//	ShowTPKG(recBuf);
+	ShowTPKG(recBuf);
 	if(!TPKGIsNew(recBuf,recBufOld)){
 		ShowTPKG(recBuf);
 		CalRec1(&rec1,recBuf);

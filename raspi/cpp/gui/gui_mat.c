@@ -74,7 +74,7 @@ int BuildCam(IplImage * mat, CvCapture * cam){
 	cvCopy(mCam2,mat);
 	cvResetImageROI(mat);
 
-	cvReleaseImage(&mCam);
+//	cvReleaseImage(&mCam);
 	cvReleaseImage(&mCam2);
 
 	return 0;
