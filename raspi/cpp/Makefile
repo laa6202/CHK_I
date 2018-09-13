@@ -6,12 +6,12 @@ OUTDIR=out
 TAR=xmpp
 SRC=main.c \
 		commu.c cal.c action.c record.c\
-		alg.c \
-		gui/gui_action.c
+		alg.c 
+#		gui/gui_action.c
 OBJ=main.o \
 		commu.o cal.o action.o record.o\
-		alg.o\
-		gui_action.o
+		alg.o
+#		gui_action.o
 
 $(TAR) : $(OBJ)
 	$(CC) -o $@ $^ $(LIB)
