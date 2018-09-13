@@ -53,8 +53,6 @@
 #define A0_GPIO_Port GPIOA
 #define A1_Pin GPIO_PIN_1
 #define A1_GPIO_Port GPIOA
-#define A2_Pin GPIO_PIN_2
-#define A2_GPIO_Port GPIOA
 #define LED1_Pin GPIO_PIN_3
 #define LED1_GPIO_Port GPIOA
 #define LED2_Pin GPIO_PIN_4
@@ -63,10 +61,6 @@
 #define D5_GPIO_Port GPIOA
 #define D6_Pin GPIO_PIN_6
 #define D6_GPIO_Port GPIOA
-#define D7_Pin GPIO_PIN_7
-#define D7_GPIO_Port GPIOA
-#define D8_Pin GPIO_PIN_1
-#define D8_GPIO_Port GPIOB
 #define U1T_Pin GPIO_PIN_9
 #define U1T_GPIO_Port GPIOA
 #define U1R_Pin GPIO_PIN_10

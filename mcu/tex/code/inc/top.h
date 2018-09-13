@@ -3,6 +3,7 @@
 
 int AppInit(void);
 int AppMain(void);
+int AppMain2(void);
 
 
 #endif

@@ -2,14 +2,14 @@
 #define __ACTION_H
 
 
-int D7OutH(void);
-int D7OutL(void);
-int D7In(void);
-int D7Check(void);
-int D7ReadBit(void);
-int D7WriteBit(int);
-int D7WriteByte(int);
-int D7ReadByte(void);
+int D5OutH(void);
+int D5OutL(void);
+int D5In(void);
+int D5Check(void);
+int D5ReadBit(void);
+int D5WriteBit(int);
+int D5WriteByte(int);
+int D5ReadByte(void);
 
 int T1_Reset(void);
 int T1_Init(void);
