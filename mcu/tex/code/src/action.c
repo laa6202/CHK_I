@@ -9,6 +9,8 @@
 
 U8 D5_Check;
 U8 TL,TH;
+U16 T_last; 
+U16 T_now;
 int t;
 
 int D5OutH(){
@@ -110,12 +112,15 @@ int T1_Reset(){
 int T1_Init(){
 	TL = 0;
 	TH = 0;
+	T_last = 0x1B0;
+	T_now = 0x1B0;
 	T1_Reset();
 	return 0;
 }
 
 
 int T1_GetTemp(){
+
 	Led2Glint();
 	T1_Reset();
 	D5WriteByte(0xCC);
@@ -127,11 +132,15 @@ int T1_GetTemp(){
 	D5WriteByte(0xBE);
 	TL = D5ReadByte();
 	TH = D5ReadByte();
-	int T = (TH << 8 | TL);
+	if((TH & 0xff) == 0xff) 
+		T_now = T_last;
+	else {
+		T_now = (TH << 8 | TL);
+		T_last = T_now;
+	}
 	Led2Glint();
-	return T;
+	return T_now;
 }
-
-//发现有时间会出现温度显示FFFF，需要后续处理。
+//发现有时间会出现温度显示FFFF
 
 
