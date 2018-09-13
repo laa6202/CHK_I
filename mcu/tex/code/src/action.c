@@ -7,33 +7,33 @@
 #include "led.h"
 
 
-U8 D7_Check;
+U8 D5_Check;
 U8 TL,TH;
 int t;
 
-int D7OutH(){
-	D7_GPIO_Port->MODER = D7_GPIO_Port->MODER | (0x01 << 14);
-	D7_GPIO_Port->ODR = D7_GPIO_Port->ODR | D7_Pin;
+int D5OutH(){
+	D5_GPIO_Port->MODER = D5_GPIO_Port->MODER | (0x01 << 10);
+	D5_GPIO_Port->ODR = D5_GPIO_Port->ODR | D5_Pin;
 	return 0;
 }
 
 
-int D7OutL(){
-	D7_GPIO_Port->MODER = D7_GPIO_Port->MODER | (0x01 << 14);
-	D7_GPIO_Port->ODR = D7_GPIO_Port->ODR & (~D7_Pin);	
+int D5OutL(){
+	D5_GPIO_Port->MODER = D5_GPIO_Port->MODER | (0x01 << 10);
+	D5_GPIO_Port->ODR = D5_GPIO_Port->ODR & (~D5_Pin);	
 	return 0;
 }
 
 
-int D7In(){
-	D7_GPIO_Port->MODER = D7_GPIO_Port->MODER & (~(0x3<<14));
+int D5In(){
+	D5_GPIO_Port->MODER = D5_GPIO_Port->MODER & (~(0x3<<10));
 	return 0;
 }
 
 
-int D7Check(){
-	D7_Check = D7_GPIO_Port->IDR;
-	if((D7_Check & D7_Pin) == D7_Pin)
+int D5Check(){
+	D5_Check = D5_GPIO_Port->IDR;
+	if((D5_Check & D5_Pin) == D5_Pin)
 		return 1;
 	else
 		return 0;
@@ -41,42 +41,42 @@ int D7Check(){
 
 
 
-int D7ReadBit(){
+int D5ReadBit(){
 	//60us
-	D7OutL();
+	D5OutL();
 	Delay1us();
-	D7In();
+	D5In();
 	Delay10us();
-	int D7_Data = D7_GPIO_Port->IDR;
+	int D5_Data = D5_GPIO_Port->IDR;
 	DelayN10us(5);
-	if((D7_Data & D7_Pin) == D7_Pin)
+	if((D5_Data & D5_Pin) == D5_Pin)
 		return 1;
 	else
 		return 0;
 }	
 	
 
-int D7WriteBit(int bit){
+int D5WriteBit(int bit){
 	//60-120us
-	D7OutL();
+	D5OutL();
 	Delay10us();
 	if(bit == 0)
 		DelayN10us(8);		
 	else{
-		D7In();
+		D5In();
 		DelayN10us(8);		
 	}
-	D7In();
+	D5In();
 	DelayN10us(4);
 	return 0;
 }
 
 
-int D7ReadByte(){
+int D5ReadByte(){
 	int j;
 	int q = 0;
 	for(int i=0;i<8;i++){
-		j = D7ReadBit();
+		j = D5ReadBit();
 		j=j<<7;
 		q = (q>>1) | j;
 	}
@@ -84,24 +84,24 @@ int D7ReadByte(){
 }
 
 
-int D7WriteByte(int byte){
+int D5WriteByte(int byte){
 	int d;
 	int j = byte;
 	for(int i=0;i<8;i++){
 		d = (j & 0x1);
 		j = (j >> 1);
-		D7WriteBit(d);
+		D5WriteBit(d);
 	}
 	return 0;
 }
 
 
 int T1_Reset(){
-	D7OutL();
+	D5OutL();
 	DelayN10us(75);	//480-960us
-	D7In();
+	D5In();
 	DelayN10us(4);	//15-60us
-	int ret = D7Check();
+	int ret = D5Check();
 	DelayN10us(10);	//60-240us
 	return ret;
 }
@@ -118,16 +118,20 @@ int T1_Init(){
 int T1_GetTemp(){
 	Led2Glint();
 	T1_Reset();
-	D7WriteByte(0xCC);
-	D7WriteByte(0x44);
+	D5WriteByte(0xCC);
+	D5WriteByte(0x44);
 	Delay1s();
 	Delay1s();
 	T1_Reset();
-	D7WriteByte(0xCC);
-	D7WriteByte(0xBE);
-	TL = D7ReadByte();
-	TH = D7ReadByte();
+	D5WriteByte(0xCC);
+	D5WriteByte(0xBE);
+	TL = D5ReadByte();
+	TH = D5ReadByte();
 	int T = (TH << 8 | TL);
 	Led2Glint();
 	return T;
 }
+
+//发现有时间会出现温度显示FFFF，需要后续处理。
+
+
