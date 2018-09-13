@@ -31,6 +31,18 @@ int GetBlock(pBSHOW pBlock){
 	pBlock->tem = atof(st);
 	if(EN_SHOW)	printf("tem = %3.2f\n",pBlock->tem);
 
+	fgets(st,20,fp);	//t2
+	fgets(st,20,fp);	//tCore
+	fgets(st,20,fp);	//oilP
+	fgets(st,20,fp);	//cntM
+	fgets(st,20,fp);	//cntX
+	fgets(st,20,fp);	//isM
+	int isM = atoi(st);
+	if(isM == 1)
+		pBlock->flag = 1;
+
+	fgets(st,20,fp);	//error
+	
 	fclose(fp);
 	return 0;
 }

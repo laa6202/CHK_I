@@ -125,7 +125,33 @@ int ShowTem(IplImage * mat,BSHOW block){
 
 
 int ShowFlag(IplImage * mat,BSHOW block){
+	int flag = block.flag;
 
+
+	IplImage *mFlag;
+	IplImage *mFlag2;
+	char fnFlag[200];	memset(fnFlag,0,200*sizeof(char));
+	getcwd(fnFlag,200);
+	if(flag == 1)
+		strcat(fnFlag,"/pic/prepare.png");
+	else if(flag == 2)
+		strcat(fnFlag,"/pic/working.png");
+	else 
+		return 0;
+
+	mFlag = cvLoadImage(fnFlag);
+//	cvShowImage("Flag",mFlag);
+
+	int mW = 300;	//width
+	int mH = 50;	//height
+	mFlag2 = cvCreateImage(cvSize(mW,mH),mFlag->depth,mFlag->nChannels);
+	cvResize(mFlag,mFlag2);
+//	cvShowImage("title",mFlag2);
+
+	CvRect roiFlag = cvRect(200,100,mW,mH);
+	cvSetImageROI(mat,roiFlag);
+	cvCopy(mFlag2,mat);
+	cvResetImageROI(mat);
 
 	return 0;
 }

@@ -7,10 +7,14 @@
 #include <record.h>
 
 
+#define TH_M 	100
+
 int GetFlag(pREC1 rec){
 //	printf("cntM = %d\n",rec->cntM);
-	if(rec->cntM > 10)
+	if(rec->cntM > TH_M)
 		rec->isM = 1;
+	else 
+		rec->isM = 0;
 	return 0;
 }
 
