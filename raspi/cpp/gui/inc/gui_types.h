@@ -5,6 +5,7 @@ typedef struct {
 	int rpm;
 	float tem;
 	int flag;
+	int err;
 }	BSHOW,*pBSHOW;
 
 

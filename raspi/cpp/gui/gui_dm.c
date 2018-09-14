@@ -12,7 +12,7 @@ int GetBlockTest(pBSHOW pBlock){
 	pBlock->rpm = 2800;
 	pBlock->tem = 85.1;
 	pBlock->flag = 0;
-
+	pBlock->err = 0;
 	return 0;
 }
 
@@ -38,10 +38,12 @@ int GetBlock(pBSHOW pBlock){
 	fgets(st,20,fp);	//cntX
 	fgets(st,20,fp);	//isM
 	int isM = atoi(st);
-	if(isM == 1)
-		pBlock->flag = 1;
+	if(isM != 0)
+		pBlock->flag = isM;
 
 	fgets(st,20,fp);	//error
+	int err = atoi(st);
+		pBlock->err = err;
 	
 	fclose(fp);
 	return 0;

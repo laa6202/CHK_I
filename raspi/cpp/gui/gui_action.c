@@ -34,6 +34,7 @@ void *GUI_Action(void * args){
 		cvCopy(matRef,mat);
 		GetBlockTest(&blockShow);
 		GetBlock(&blockShow);
+		ShowStat(mat,blockShow);
 		ShowRPM(mat,blockShow);
 		ShowTem(mat,blockShow);
 		ShowFlag(mat,blockShow);

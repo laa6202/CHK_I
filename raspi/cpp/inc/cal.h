@@ -6,6 +6,8 @@
 int CalInit(void);
 int CalRec1(pREC1,const U8 *);
 
+int CalHead(const U8*);
+int CalIndex(const U8*);
 int CalRot(const U8 *);
 float CalT1(const U8 *);
 float CalT2(const U8 *);

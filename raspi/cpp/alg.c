@@ -8,10 +8,13 @@
 
 
 #define TH_M 	100
+#define TH_X  10
 
 int GetFlag(pREC1 rec){
 //	printf("cntM = %d\n",rec->cntM);
-	if(rec->cntM > TH_M)
+	if(rec->cntX > TH_X)
+		rec->isM = 2;
+	else if(rec->cntM > TH_M)
 		rec->isM = 1;
 	else 
 		rec->isM = 0;
@@ -21,12 +24,15 @@ int GetFlag(pREC1 rec){
 
 int GetError(pREC1 rec){
 	int err = 0;
-	if((rec->isM == 1) && (rec->rot < 2000))
-		err = err | 0x1; 
-	if(rec->tCore > 69)
-		err = err | 0x2;
-	if(rec->oilP > 1000)
-		err = err | 0x4;
+	int index[10];
+	for(int i=9;i>0;i--)
+		index[i] = index[i-1];
+	index[0] = rec->index;
+	int diff  = 0;
+	for(int i=0;i<9;i++)
+		diff += (index[i] - index[i+1]);
+	if(diff == 0)
+		err = 1;
  	rec->error = err;
 	return 0;
 }
@@ -104,8 +110,8 @@ int RotMod100(int rot){
 	else if (rot < 100)
 		a = 0;
 	else a = rot;
-	int b = a /100;
-	return b*100;
+	int b = a /10;
+	return b*10;
 }
 
 

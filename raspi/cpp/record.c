@@ -29,8 +29,10 @@ int SaveRec11(REC1 rec){
 
 
 int LoadKBTest(float *k,float *b){
-	*k = 1.4;
-	*b = -840;
+	//*k = 1.4;
+	//*b = -840;
+	*k = 1.3333333;
+	*b = -666.666667;
 	return 0;
 }
 

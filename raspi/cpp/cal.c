@@ -8,17 +8,17 @@
 
 #define EN_SHOW 0
 
-unsigned int index;
+//unsigned int index;
 
 int CalInit(){
-	index = 0;
 	return 0;
 }
 
 
 
 int CalRec1(pREC1 rec,const U8 * recBuf){
-	index++;
+	int head = CalHead(recBuf);
+	int index = CalIndex(recBuf);
 	int rot = CalRot(recBuf);
 	float tCore = CalTCore(recBuf);
 	float t1 = CalT1(recBuf);
@@ -27,7 +27,7 @@ int CalRec1(pREC1 rec,const U8 * recBuf){
 	int cntM = CalCntM(recBuf);
 	int cntX = CalCntX(recBuf);
 	long sumX = CalSumX(recBuf);
-	rec->head = 0x01051155;
+	rec->head = head;
 	rec->index = index;
 	rec->rot = rot;
 	rec->t1 = t1;
@@ -37,6 +37,19 @@ int CalRec1(pREC1 rec,const U8 * recBuf){
 	rec->cntM = cntM;
 	rec->cntX = cntX;
 	return 0;
+}
+
+
+
+int CalHead(const U8 * recBuf){
+	int head = *(recBuf+0) | (*(recBuf+1) << 8);
+	return head;
+}
+
+
+int CalIndex(const U8 * recBuf){
+	int index = *(recBuf+2) | (*(recBuf+3) << 8);
+	return index;
 }
 
 

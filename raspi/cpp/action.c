@@ -37,6 +37,8 @@ int AppMain(){
 		GetError(&rec1);
 		SaveRec11(rec1);
 	}
+	else {
+	}
 	return 0;
 }
 

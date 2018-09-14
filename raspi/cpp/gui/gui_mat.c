@@ -11,7 +11,7 @@ int BuildBase(IplImage * mat){
 	IplImage *mBase;
 	char fnBase[200];	memset(fnBase,0,200*sizeof(char));
 	getcwd(fnBase,200);
-	strcat(fnBase,"/pic/base3.png");
+	strcat(fnBase,"/pic/base4.png");
 	mBase = cvLoadImage(fnBase);
 	cvResize(mBase,mat);
 //	cvCopy(mBase,mat);
@@ -133,25 +133,65 @@ int ShowFlag(IplImage * mat,BSHOW block){
 	char fnFlag[200];	memset(fnFlag,0,200*sizeof(char));
 	getcwd(fnFlag,200);
 	if(flag == 1)
-		strcat(fnFlag,"/pic/prepare.png");
+		strcat(fnFlag,"/pic/standby/1.png");
 	else if(flag == 2)
-		strcat(fnFlag,"/pic/working.png");
+		strcat(fnFlag,"/pic/working/1.png");
 	else 
 		return 0;
 
 	mFlag = cvLoadImage(fnFlag);
 //	cvShowImage("Flag",mFlag);
 
-	int mW = 200;	//width
-	int mH = 30;	//height
+	int mW = 100;	//width
+	int mH = 100;	//height
 	mFlag2 = cvCreateImage(cvSize(mW,mH),mFlag->depth,mFlag->nChannels);
 	cvResize(mFlag,mFlag2);
 //	cvShowImage("title",mFlag2);
 
-	CvRect roiFlag = cvRect(250,130,mW,mH);
+	CvRect roiFlag = cvRect(250,440,mW,mH);
 	cvSetImageROI(mat,roiFlag);
 	cvCopy(mFlag2,mat);
 	cvResetImageROI(mat);
+
+	cvReleaseImage(&mFlag);
+	cvReleaseImage(&mFlag2);
+
+	return 0;
+}
+
+
+
+int ShowStat(IplImage * mat,BSHOW block){
+	int stat = block.err;
+
+
+	IplImage *mStat;
+	IplImage *mStat2;
+	char fnStat[200];	memset(fnStat,0,200*sizeof(char));
+	getcwd(fnStat,200);
+	if(stat == 0)
+		strcat(fnStat,"/pic/sysOK.png");
+	else if(stat == 1)
+		strcat(fnStat,"/pic/sysError.png");
+	else 
+		return 0;
+
+	mStat = cvLoadImage(fnStat);
+//	cvShowImage("Stat",mStat);
+
+	int mW = 480;	//width
+	int mH = 50;	//height
+	mStat2 = cvCreateImage(cvSize(mW,mH),mStat->depth,mStat->nChannels);
+	cvResize(mStat,mStat2);
+//	cvShowImage("title",mStat);
+
+	CvRect roiStat = cvRect(50,130,mW,mH);
+	cvSetImageROI(mat,roiStat);
+	cvCopy(mStat2,mat);
+	cvResetImageROI(mat);
+
+	cvReleaseImage(&mStat);
+	cvReleaseImage(&mStat2);
 
 	return 0;
 }
