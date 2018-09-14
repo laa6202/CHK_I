@@ -12,7 +12,7 @@
 int index_point = 0;
 int sel_send = 1;
 int th_m = 0x800;
-int th_x = 0x800;
+int th_x = 0x80;
 
 int BufPoint(float * bufA,float * bufB,int * rdy_A,int *rdy_B){		
 	uint16_t adc_d1 =  ADC2->JDR1;
